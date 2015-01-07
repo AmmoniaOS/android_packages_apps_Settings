@@ -77,12 +77,14 @@ public class WirelessSettings extends SettingsPreferenceFragment
     private static final String KEY_SMS_APPLICATION = "sms_application";
     private static final String KEY_TOGGLE_NSD = "toggle_nsd"; //network service discovery
     private static final String KEY_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
+    private static final String KEY_CAPTIVE_PORTAL_LOGIN = "captive_portal_login";
 
     public static final String EXIT_ECM_RESULT = "exit_ecm_result";
     public static final int REQUEST_CODE_EXIT_ECM = 1;
 
     private AirplaneModeEnabler mAirplaneModeEnabler;
     private SwitchPreference mAirplaneModePreference;
+    private SwitchPreference mCaptivePortalLogin;
     private NfcEnabler mNfcEnabler;
     private NfcAdapter mNfcAdapter;
     private NsdEnabler mNsdEnabler;
@@ -297,6 +299,8 @@ public class WirelessSettings extends SettingsPreferenceFragment
         getPreferenceScreen().removePreference(nsd);
         //mNsdEnabler = new NsdEnabler(activity, nsd);
 
+        mCaptivePortalLogin = (SwitchPreference) findPreference(KEY_CAPTIVE_PORTAL_LOGIN);
+
         String toggleable = Settings.Global.getString(activity.getContentResolver(),
                 Settings.Global.AIRPLANE_MODE_TOGGLEABLE_RADIOS);
 
@@ -434,6 +438,11 @@ public class WirelessSettings extends SettingsPreferenceFragment
         if (mNsdEnabler != null) {
             mNsdEnabler.resume();
         }
+        if (mCaptivePortalLogin != null) {
+            boolean CaptivePortalState = 1 == Settings.Global.getString(getContentResolver(),
+                    Settings.Global.CAPTIVE_PORTAL_DETECTION_ENABLED, 0);
+            mCaptivePortalLogin.setChecked(CaptivePortalState);
+        }
     }
 
     @Override
@@ -479,6 +488,10 @@ public class WirelessSettings extends SettingsPreferenceFragment
         if (preference == mSmsApplicationPreference && newValue != null) {
             SmsApplication.setDefaultApplication(newValue.toString(), getActivity());
             return true;
+        } else if (preference == mCaptivePortalLogin) {
+            Settings.Global.putString(getContentResolver(),
+                    Settings.Global.CAPTIVE_PORTAL_DETECTION_ENABLED,(mCaptivePortalLogin.isChecked()
+            ? 1 : 0));
         }
         return false;
     }
