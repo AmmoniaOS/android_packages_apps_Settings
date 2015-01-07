@@ -18,4 +18,7 @@
     <string name="no_captive_portal_url_label">g.cn (default)</string>
     <string name="captive_portal_url_label_title">Captive Portal url</string>
     <string name="captive_portal_url_label">Setup completed please reconnect to the network！</string>
+    <!-- quick reboot menu and screenshot -->
+    <string name="hardware_keys_action_screenshot">screenshot</string>
+    <string name="hardware_keys_action_reboot_menu">reboot menu</string>
 </resources>
