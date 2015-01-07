@@ -15,6 +15,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="captive_portal_login_title">CaptivePortalLogin</string>
-    <string name="captive_portal_login_summary">Choose whether to open CaptivePortalLogin</string>
+    <string name="no_captive_portal_url_label">g.cn (default)</string>
+    <string name="captive_portal_url_label_title">Captive Portal url</string>
+    <string name="captive_portal_url_label">Settings Captive Portal url</string>
 </resources>
