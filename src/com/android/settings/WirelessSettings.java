@@ -46,7 +46,9 @@ import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.widget.EditText;
 import android.util.Log;
+import android.text.Spannable;
 
 import com.android.internal.telephony.SmsApplication;
 import com.android.internal.telephony.SmsApplication.SmsApplicationData;
@@ -77,13 +79,14 @@ public class WirelessSettings extends SettingsPreferenceFragment
     private static final String KEY_SMS_APPLICATION = "sms_application";
     private static final String KEY_TOGGLE_NSD = "toggle_nsd"; //network service discovery
     private static final String KEY_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
+    private static final String CAPTIVE_PORTAL_URL_LABEL = "captive_portal_url_label";
 
     public static final String EXIT_ECM_RESULT = "exit_ecm_result";
     public static final int REQUEST_CODE_EXIT_ECM = 1;
 
     private AirplaneModeEnabler mAirplaneModeEnabler;
     private SwitchPreference mAirplaneModePreference;
-    private SwitchPreference mCaptivePortalLogin;
+    private PreferenceScreen mCaptivePortalurlLabel;
     private NfcEnabler mNfcEnabler;
     private NfcAdapter mNfcAdapter;
     private NsdEnabler mNsdEnabler;
@@ -97,6 +100,8 @@ public class WirelessSettings extends SettingsPreferenceFragment
     private static final String SAVED_MANAGE_MOBILE_PLAN_MSG = "mManageMobilePlanMessage";
 
     private AppListPreference mSmsApplicationPreference;
+
+    private String mCaptivePortalurlLabelText;
 
     /**
      * Invoked on each preference click in this hierarchy, overrides
@@ -115,6 +120,26 @@ public class WirelessSettings extends SettingsPreferenceFragment
             return true;
         } else if (preference == findPreference(KEY_MANAGE_MOBILE_PLAN)) {
             onManageMobilePlanClick();
+        } else if (preference.getKey().equals(CAPTIVE_PORTAL_URL_LABEL)) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setTitle(R.string.captive_portal_url_label_title);
+            alert.setMessage(R.string.captive_portal_url_label);
+            final EditText input = new EditText(getActivity());
+            input.setText(TextUtils.isEmpty(mCaptivePortalurlLabelText) ? ""
+                    : mCaptivePortalurlLabelText);
+            input.setSelection(input.getText().length());
+            alert.setView(input);
+            alert.setPositiveButton(getString(android.R.string.ok),
+            new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    String value = ((Spannable) input.getText()).toString().trim();
+                    Settings.Global.putString(getActivity().getContentResolver(),
+                           Settings.Global.CAPTIVE_PORTAL_SERVER, value);
+                    updateCaptivePortalurlTextSummary();
+                }
+            });
+            alert.setNegativeButton(getString(android.R.string.cancel), null);
+            alert.show();
         }
         // Let the intents be launched by the Preference manager
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -298,6 +323,9 @@ public class WirelessSettings extends SettingsPreferenceFragment
         getPreferenceScreen().removePreference(nsd);
         //mNsdEnabler = new NsdEnabler(activity, nsd);
 
+        mCaptivePortalurlLabel = (PreferenceScreen) findPreference(CAPTIVE_PORTAL_URL_LABEL);
+        updateCaptivePortalurlTextSummary();
+
         String toggleable = Settings.Global.getString(activity.getContentResolver(),
                 Settings.Global.AIRPLANE_MODE_TOGGLEABLE_RADIOS);
 
@@ -417,6 +445,17 @@ public class WirelessSettings extends SettingsPreferenceFragment
         }
     }
 
+    private void updateCaptivePortalurlTextSummary() {
+         mCaptivePortalurlLabelText = Settings.Global.getString(getActivity().getContentResolver(),
+                Settings.Global.CAPTIVE_PORTAL_SERVER);
+         if (TextUtils.isEmpty(mCaptivePortalurlLabelText)) {
+              Settings.Global.putString(getActivity().getContentResolver(),
+                     Settings.Global.CAPTIVE_PORTAL_SERVER, null);
+              mCaptivePortalurlLabel.setSummary(R.string.no_captive_portal_url_label);
+         } else {
+              mCaptivePortalurlLabel.setSummary(mCaptivePortalurlLabelText);
+         }
+    }
     @Override
     public void onStart() {
         super.onStart();
