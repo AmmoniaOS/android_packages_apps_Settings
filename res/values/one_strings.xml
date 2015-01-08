@@ -22,6 +22,7 @@
     <string name="hardware_keys_action_screenshot">screenshot</string>
     <string name="hardware_keys_action_power_menu">power menu</string>
     
+    <string name="battery_save_mode">Smart power</string>
     <string name="power_save_setting_title">Energy saving mode</string>
     <string name="power_save_setting_summary">The choice of energy-saving mode you want</string>
     <string name="power_save_setting_off">Closed</string>
