@@ -20,5 +20,11 @@
     <string name="captive_portal_url_label">设置后请重新连接网络</string>
     <!-- quick reboot menu and screenshot -->
     <string name="hardware_keys_action_screenshot">屏幕截图</string>
-    <string name="hardware_keys_action_poweer_menu">电源菜单</string>
+    <string name="hardware_keys_action_power_menu">电源菜单</string>
+    
+    <string name="power_save_setting_title">省电模式</string>
+    <string name="power_save_setting_summary">选择你的节能模式</string>
+    <string name="power_save_setting_off">关闭</string>
+    <string name="power_save_setting_always_open">一直开启</string>
+    <string name="power_save_setting_screen_saving">熄屏节能</string>
 </resources>
