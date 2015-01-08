@@ -20,5 +20,11 @@
     <string name="captive_portal_url_label">Setup completed please reconnect to the network</string>
     <!-- quick reboot menu and screenshot -->
     <string name="hardware_keys_action_screenshot">screenshot</string>
-    <string name="hardware_keys_action_power_menu">reboot menu</string>
+    <string name="hardware_keys_action_power_menu">power menu</string>
+    
+    <string name="power_save_setting_title">Energy saving mode</string>
+    <string name="power_save_setting_summary">The choice of energy-saving mode you want</string>
+    <string name="power_save_setting_off">Closed</string>
+    <string name="power_save_setting_always_open">Always Open</string>
+    <string name="power_save_setting_screen_saving">Off Screen Saving</string>
 </resources>
