@@ -22,6 +22,7 @@
     <string name="hardware_keys_action_screenshot">屏幕截图</string>
     <string name="hardware_keys_action_power_menu">电源菜单</string>
     
+    <string name="battery_save_mode">智能省电</string>
     <string name="power_save_setting_title">省电模式</string>
     <string name="power_save_setting_summary">选择你的节能模式</string>
     <string name="power_save_setting_off">关闭</string>
