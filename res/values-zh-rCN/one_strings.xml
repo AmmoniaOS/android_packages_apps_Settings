@@ -15,10 +15,10 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="no_captive_portal_url_label">g.cn (default)</string>
+    <string name="no_captive_portal_url_label">g.cn (默认)</string>
     <string name="captive_portal_url_label_title">Captive Portal url</string>
-    <string name="captive_portal_url_label">Setup completed please reconnect to the network</string>
+    <string name="captive_portal_url_label">设置后请重新连接网络</string>
     <!-- quick reboot menu and screenshot -->
-    <string name="hardware_keys_action_screenshot">screenshot</string>
-    <string name="hardware_keys_action_power_menu">reboot menu</string>
+    <string name="hardware_keys_action_screenshot">屏幕截图</string>
+    <string name="hardware_keys_action_poweer_menu">电源菜单</string>
 </resources>
