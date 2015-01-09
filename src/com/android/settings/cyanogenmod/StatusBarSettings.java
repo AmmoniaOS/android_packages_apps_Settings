@@ -42,6 +42,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
     private static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+    private static final String STATUS_BAR_NETWORK_TRAFFIC_STYLE = "status_bar_network_traffic_style";
 
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
@@ -50,6 +51,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mStatusBarBatteryShowPercent;
     private CheckBoxPreference mStatusBarCarrier;
     private PreferenceScreen mCustomCarrierLabel;
+    private ListPreference mStatusBarNetworkTraffic;
 
     private String mCustomCarrierLabelText;
 
@@ -87,6 +89,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         } else {
             updateCustomLabelTextSummary();
         }
+        
+        mStatusBarNetworkTraffic = (ListPreference) prefSet.findPreference(STATUS_BAR_NETWORK_TRAFFIC_STYLE);
+        int networkTrafficStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE, 3);
+        mStatusBarNetworkTraffic.setValue(String.valueOf(networkTrafficStyle));
+        mStatusBarNetworkTraffic.setSummary(mStatusBarNetworkTraffic.getEntry());
+        mStatusBarNetworkTraffic.setOnPreferenceChangeListener(this);
     }
     
     private void updateCustomLabelTextSummary() {
@@ -122,6 +130,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         } else if (preference == mStatusBarCarrier) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_CARRIER, value ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarNetworkTraffic) {
+            int networkTrafficStyle = Integer.valueOf((String) newValue);
+            int index = mStatusBarNetworkTraffic.findIndexOfValue((String) newValue);
+            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE, networkTrafficStyle);
+            mStatusBarNetworkTraffic.setSummary(mStatusBarNetworkTraffic.getEntries()[index]);
             return true;
         }
         return false;
