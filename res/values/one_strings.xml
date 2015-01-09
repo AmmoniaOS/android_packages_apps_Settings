@@ -15,9 +15,11 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
     <string name="no_captive_portal_url_label">g.cn (default)</string>
     <string name="captive_portal_url_label_title">Captive Portal url</string>
     <string name="captive_portal_url_label">Setup completed please reconnect to the network</string>
+    
     <!-- quick reboot menu and screenshot -->
     <string name="hardware_keys_action_screenshot">screenshot</string>
     <string name="hardware_keys_action_power_menu">power menu</string>
@@ -28,4 +30,12 @@
     <string name="power_save_setting_off">Closed</string>
     <string name="power_save_setting_always_open">Always Open</string>
     <string name="power_save_setting_screen_saving">Off Screen Saving</string>
+    
+    <!-- Show carrier label and custom -->
+    <string name="show_status_bar_carrier_title">Status bar carrier</string>
+    <string name="show_status_bar_carrier_summary">Show carrier in status bar</string>
+    <string name="custom_carrier_label_title">Custom carrier label</string>
+    <string name="custom_carrier_label_explain">Please enter a new label. Leave blank to revert to stock label.</string>
+    <string name="custom_carrier_label_notset">Custom label currently not set</string>
+    
 </resources>
