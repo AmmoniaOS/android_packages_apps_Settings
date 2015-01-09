@@ -20,7 +20,7 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceScreen;
 import android.preference.Preference;
@@ -50,7 +50,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
     private ListPreference mStatusBarBattery;
     private ListPreference mStatusBarBatteryShowPercent;
-    private CheckBoxPreference mStatusBarCarrier;
+    private SwitchPreference mStatusBarCarrier;
     private PreferenceScreen mCustomCarrierLabel;
     private ListPreference mStatusBarNetworkTraffic;
 
@@ -80,7 +80,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         enableStatusBarBatteryDependents(batteryStyle);
         mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
         
-        mStatusBarCarrier = (CheckBoxPreference) findPreference(STATUS_BAR_CARRIER);
+        mStatusBarCarrier = (SwitchPreference) findPreference(STATUS_BAR_CARRIER);
         mStatusBarCarrier.setChecked((Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER, 0) == 1));
         mStatusBarCarrier.setOnPreferenceChangeListener(this);

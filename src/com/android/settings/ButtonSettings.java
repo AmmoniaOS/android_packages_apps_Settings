@@ -30,7 +30,6 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.preference.CheckBoxPreference;
 import android.provider.Settings;
 
 import android.util.Log;
@@ -115,7 +114,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mNavigationBarLeftPref;
     private SwitchPreference mPowerEndCall;
     private SwitchPreference mHomeAnswerCall;
-    private CheckBoxPreference mVolumeAnswerCall;
+    private SwitchPreference mVolumeAnswerCall;
 
     private PreferenceCategory mNavigationPreferencesCat;
 
@@ -329,7 +328,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             mVolumeKeyCursorControl = initActionList(KEY_VOLUME_KEY_CURSOR_CONTROL,
                     cursorControlAction);
 
-            mVolumeAnswerCall = (CheckBoxPreference) prefScreen.findPreference(KEY_VOLUME_ANSWER_CALL);
+            mVolumeAnswerCall = (SwitchPreference) prefScreen.findPreference(KEY_VOLUME_ANSWER_CALL);
             mVolumeAnswerCall.setChecked((Settings.System.getInt(getContentResolver(),
                               Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, 0) == 1));
             mVolumeAnswerCall.setOnPreferenceChangeListener(this);
