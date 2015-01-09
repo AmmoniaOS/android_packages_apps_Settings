@@ -182,6 +182,11 @@
         android:key="volume_keys"
         android:title="@string/hardware_keys_volume_keys_title" >
 
+        <CheckBoxPreference
+            android:key="volume_answer_call"
+            android:title="@string/volume_answer_call_title"
+            android:defaultValue="false" />
+
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="volume_wake_screen"
             android:title="@string/button_wake_title"

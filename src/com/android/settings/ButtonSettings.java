@@ -30,6 +30,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.preference.CheckBoxPreference;
 import android.provider.Settings;
 
 import android.util.Log;
@@ -64,6 +65,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String KEY_NAVIGATION_BAR_LEFT = "navigation_bar_left";
     private static final String KEY_POWER_END_CALL = "power_end_call";
     private static final String KEY_HOME_ANSWER_CALL = "home_answer_call";
+    private static final String KEY_VOLUME_ANSWER_CALL = "volume_answer_call";
 
     private static final String CATEGORY_POWER = "power_key";
     private static final String CATEGORY_HOME = "home_key";
@@ -113,6 +115,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mNavigationBarLeftPref;
     private SwitchPreference mPowerEndCall;
     private SwitchPreference mHomeAnswerCall;
+    private CheckBoxPreference mVolumeAnswerCall;
 
     private PreferenceCategory mNavigationPreferencesCat;
 
@@ -326,6 +329,11 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             mVolumeKeyCursorControl = initActionList(KEY_VOLUME_KEY_CURSOR_CONTROL,
                     cursorControlAction);
 
+            mVolumeAnswerCall = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ANSWER_CALL);
+            mVolumeAnswerCall.setChecked((Settings.System.getInt(resolver,
+                              Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, 0) == 1));
+            mVolumeAnswerCall.setOnPreferenceChangeListener(this);
+
             int swapVolumeKeys = Settings.System.getInt(getContentResolver(),
                     Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, 0);
             mSwapVolumeButtons = (SwitchPreference)
@@ -442,6 +450,11 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         } else if (preference == mVolumeKeyCursorControl) {
             handleActionListChange(mVolumeKeyCursorControl, newValue,
                     Settings.System.VOLUME_KEY_CURSOR_CONTROL);
+            return true;
+        } else if (preference == mVolumeAnswerCall) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+            Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, value ? 1 : 0);
             return true;
         }
         return false;
