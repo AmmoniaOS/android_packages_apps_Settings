@@ -329,8 +329,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             mVolumeKeyCursorControl = initActionList(KEY_VOLUME_KEY_CURSOR_CONTROL,
                     cursorControlAction);
 
-            mVolumeAnswerCall = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ANSWER_CALL);
-            mVolumeAnswerCall.setChecked((Settings.System.getInt(resolver,
+            mVolumeAnswerCall = (CheckBoxPreference) prefScreen.findPreference(KEY_VOLUME_ANSWER_CALL);
+            mVolumeAnswerCall.setChecked((Settings.System.getInt(getContentResolver(),
                               Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, 0) == 1));
             mVolumeAnswerCall.setOnPreferenceChangeListener(this);
 
@@ -453,7 +453,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             return true;
         } else if (preference == mVolumeAnswerCall) {
             boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver,
+            Settings.System.putInt(getContentResolver(),
             Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, value ? 1 : 0);
             return true;
         }

@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
+import android.preference.PreferenceScreen;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
@@ -79,18 +80,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         enableStatusBarBatteryDependents(batteryStyle);
         mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
         
-        mStatusBarCarrier = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_CARRIER);
-        mStatusBarCarrier.setChecked((Settings.System.getInt(resolver, Settings.System.STATUS_BAR_CARRIER, 0) == 1));
+        mStatusBarCarrier = (CheckBoxPreference) findPreference(STATUS_BAR_CARRIER);
+        mStatusBarCarrier.setChecked((Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_CARRIER, 0) == 1));
         mStatusBarCarrier.setOnPreferenceChangeListener(this);
-        mCustomCarrierLabel = (PreferenceScreen) prefSet.findPreference(CUSTOM_CARRIER_LABEL);
-        if (TelephonyManager.getDefault().isMultiSimEnabled()) {
-            prefSet.removePreference(mStatusBarCarrier);
-            prefSet.removePreference(mCustomCarrierLabel);
-        } else {
+        mCustomCarrierLabel = (PreferenceScreen) findPreference(CUSTOM_CARRIER_LABEL);
             updateCustomLabelTextSummary();
-        }
         
-        mStatusBarNetworkTraffic = (ListPreference) prefSet.findPreference(STATUS_BAR_NETWORK_TRAFFIC_STYLE);
+        mStatusBarNetworkTraffic = (ListPreference) findPreference(STATUS_BAR_NETWORK_TRAFFIC_STYLE);
         int networkTrafficStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE, 3);
         mStatusBarNetworkTraffic.setValue(String.valueOf(networkTrafficStyle));
         mStatusBarNetworkTraffic.setSummary(mStatusBarNetworkTraffic.getEntry());
