@@ -16,6 +16,11 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- About phone screen, New One version -->
+    <string name="mod_version">One Version</string>
+    <string name="mod_version_default">Unknown</string>
+    <string name="model_name">Model name</string>
+
     <string name="no_captive_portal_url_label">g.cn (default)</string>
     <string name="captive_portal_url_label_title">Captive Portal url</string>
     <string name="captive_portal_url_label">Setup completed please reconnect to the network</string>
