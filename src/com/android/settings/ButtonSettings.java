@@ -89,6 +89,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final int ACTION_LAUNCH_CAMERA = 6;
     private static final int ACTION_SLEEP = 7;
     private static final int ACTION_LAST_APP = 8;
+    private static final int ACTION_SCREENSHOT = 9;
+    private static final int ACTION_POWER_MENU = 10;
 
     // Masks for checking presence of hardware keys.
     // Must match values in frameworks/base/core/res/res/values/config.xml
