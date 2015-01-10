@@ -297,11 +297,6 @@
     <!-- CM Updater -->
     <string name="cmupdate_settings_title">CyanogenMod updates</string>
 
-    <!-- About phone screen, New One version -->
-    <string name="mod_version">New One version</string>
-    <string name="mod_version_default">Unknown</string>
-    <string name="model_name">Model name</string>
-
     <!-- About phone screen, build date -->
     <string name="build_date">Build date</string>
     <string name="build_date_default">2014-01-01-0000</string>
