@@ -115,7 +115,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             updateCustomLabelTextSummary();
         
         mStatusBarNetworkTraffic = (ListPreference) findPreference(STATUS_BAR_NETWORK_TRAFFIC_STYLE);
-        int networkTrafficStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE, 3);
+        int networkTrafficStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE, 0);
         mStatusBarNetworkTraffic.setValue(String.valueOf(networkTrafficStyle));
         mStatusBarNetworkTraffic.setSummary(mStatusBarNetworkTraffic.getEntry());
         mStatusBarNetworkTraffic.setOnPreferenceChangeListener(this);
