@@ -50,4 +50,6 @@
     <string name="carrier_size_style_small">小</string>
     <string name="carrier_size_style_big">大</string>
 
+    <string name="smarter_control">智能调控</string>
+
 </resources>

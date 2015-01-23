@@ -246,7 +246,7 @@ public class SettingsActivity extends Activity
             R.id.home_settings,
             R.id.dashboard,
             R.id.privacy_settings_cyanogenmod,
-            R.id.battery_save_settings
+            R.id.smarter_control_settings
     };
 
     private static final String[] ENTRY_FRAGMENTS = {
