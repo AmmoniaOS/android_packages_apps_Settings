@@ -17,9 +17,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-        <PreferenceScreen
-            android:key="battery_save"
-            android:title="@string/battery_save_mode"
-            android:fragment="com.android.settings.fuelgauge.BatterySaverSettings" />
+    <PreferenceScreen
+        android:key="battery_save"
+        android:title="@string/battery_save_mode"
+        android:fragment="com.android.settings.fuelgauge.BatterySaverSettings" />
+    
+    <SwitchPreference
+        android:key="smarter_brightness"
+        android:title="@string/smarter_brightness_title"
+        android:summary="@string/smarter_brightness_summary"
+        android:defaultValue="false" />
 
 </PreferenceScreen>

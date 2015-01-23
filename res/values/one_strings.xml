@@ -53,4 +53,7 @@
 
     <string name="smarter_control">Smarter Control</string>
 
+    <string name="smarter_brightness_title">Smarter Brightness</string>
+    <string name="smarter_brightness_summary">According to circadian intelligent adjusting brightness</string>
+
 </resources>

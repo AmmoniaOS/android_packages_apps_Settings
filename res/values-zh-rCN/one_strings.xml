@@ -52,4 +52,7 @@
 
     <string name="smarter_control">智能调控</string>
 
+    <string name="smarter_brightness_title">智能亮度</string>
+    <string name="smarter_brightness_summary">根据昼夜智能调节亮度</string>
+
 </resources>

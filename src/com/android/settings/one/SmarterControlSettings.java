@@ -19,6 +19,7 @@ package com.android.settings.one;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
@@ -31,12 +32,21 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
 
     private static final String TAG = "SmarterControlSettings";
 
+    private static final String SMARTER_BRIGHTNESS = "smarter_brightness";
+
+    private SwitchPreference mSmarterBrightness;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.smarter_control_settings);
 
         ContentResolver resolver = getActivity().getContentResolver();
+
+        mSmarterBrightness = (SwitchPreference) findPreference(SMARTER_BRIGHTNESS);
+        mSmarterBrightness.setChecked((Settings.System.getInt(resolver,
+                 Settings.System.SMARTER_BRIGHTNESS, 0) == 1));
+        mSmarterBrightness.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -47,6 +57,11 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mSmarterBrightness) {
+             boolean value = (Boolean) newValue;
+             Settings.System.putInt(resolver, Settings.System.SMARTER_BRIGHTNESS, value ? 1 : 0);
+             return true;
+         }
         return false;
     }
 
