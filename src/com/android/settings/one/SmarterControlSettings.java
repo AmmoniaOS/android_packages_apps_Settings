@@ -27,6 +27,10 @@ import android.provider.Settings.Global;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
+import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE;
+
 public class SmarterControlSettings extends SettingsPreferenceFragment 
              implements OnPreferenceChangeListener {
 
@@ -47,6 +51,14 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
         mSmarterBrightness.setChecked((Settings.System.getInt(resolver,
                  Settings.System.SMARTER_BRIGHTNESS, 0) == 1));
         mSmarterBrightness.setOnPreferenceChangeListener(this);
+        boolean mAutomaticBrightnessState = Settings.System.getInt(resolver,
+                 SCREEN_BRIGHTNESS_MODE, SCREEN_BRIGHTNESS_MODE_MANUAL)
+                 == SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+        if (mAutomaticBrightnessState) {
+            mSmarterBrightness.setSummary(R.string.no_smarter_brightness_summary);
+            mSmarterBrightness.setEnabled(mAutomaticBrightnessState);
+            Settings.System.putInt(resolver, Settings.System.SMARTER_BRIGHTNESS, 0);
+        }
     }
 
     @Override
