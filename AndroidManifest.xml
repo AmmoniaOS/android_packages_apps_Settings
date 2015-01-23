@@ -2199,5 +2199,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".one.SmarterControlSettings"
+            android:parentActivityName="Settings" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
