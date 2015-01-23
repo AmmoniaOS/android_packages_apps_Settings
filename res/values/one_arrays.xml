@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2015 The New One Android
+     Copyright (C) 2015 The Android One
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- power save batt -->
+
     <string-array name="power_save_setting_entries" translatable="false">
         <item>@string/power_save_setting_off</item>
         <item>@string/power_save_setting_always_open</item>
@@ -27,7 +27,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    <!-- show network traffic -->
+
     <string-array name="entries_status_bar_network_traffic_style" translatable="false">
         <item>@string/status_bar_network_traffic_style_disable</item>
         <item>@string/status_bar_network_traffic_style_up</item>
@@ -41,4 +41,16 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+    <string-array name="entries_carrier_size_style" translatable="false">
+        <item>@string/carrier_size_style_normal</item>
+        <item>@string/carrier_size_style_small</item>
+        <item>@string/carrier_size_style_big</item>
+    </string-array>
+
+    <string-array name="values_carrier_size_style" translatable="false">
+        <item>0</item>
+        <item>4</item>
+        <item>6</item>
+    </string-array>
+
 </resources>
