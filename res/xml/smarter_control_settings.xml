@@ -37,6 +37,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="display_smarter"
         android:title="@string/display_smarter_title" >
     
     <SwitchPreference
@@ -78,5 +79,11 @@
         android:dependency="smarter_brightness" />
 
     </PreferenceCategory>
+
+    <!-- Feature description text -->
+    <Preference
+        android:key="tips"
+        android:persistent="false"
+        android:selectable="false" />
 
 </PreferenceScreen>

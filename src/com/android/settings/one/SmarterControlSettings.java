@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.preference.ListPreference;
 import android.preference.SwitchPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
 import android.provider.Settings.Global;
@@ -44,6 +45,8 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private static final String KEY_NOONHOURS_CHANGES = "noonhours_changes";
     private static final String KEY_NIGHTHOURS_CHANGES = "nighthours_changes";
     private static final String KEY_POWER_SAVE_SETTING = "power_save_setting";
+    private static final String KEY_TIPS = "tips";
+    private static final String KEY_DISPLAY_SMARTER = "display_smarter";
 
     private SwitchPreference mSmarterBrightness;
     private ListPreference mSmallhours;
@@ -51,6 +54,8 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private ListPreference mNoonhours;
     private ListPreference mNighthours;
     private ListPreference mPowerSaveSettings;
+    private Preference mTips;
+    private PreferenceCategory mDisplaySmarter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,9 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.smarter_control_settings);
 
         ContentResolver resolver = getActivity().getContentResolver();
+
+        mTips = (Preference) findPreference(KEY_TIPS);
+        mDisplaySmarter = (PreferenceCategory) findPreference(KEY_DISPLAY_SMARTER);
 
         mPowerSaveSettings = (ListPreference) findPreference(KEY_POWER_SAVE_SETTING);
         int PowerSaveSettings = Settings.System.getInt(
@@ -102,9 +110,10 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
                  SCREEN_BRIGHTNESS_MODE, SCREEN_BRIGHTNESS_MODE_MANUAL)
                  == SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
         if (mAutomaticBrightnessState) {
-            getPreferenceScreen().removePreference(mSmarterBrightness);
+            getPreferenceScreen().removePreference(mDisplaySmarter);
             Settings.System.putInt(resolver,
                  Settings.System.SMARTER_BRIGHTNESS, 0);
+            mTips.setSummary(R.String.tips_title);
         }
     }
 

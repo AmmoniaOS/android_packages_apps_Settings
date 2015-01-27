@@ -71,4 +71,6 @@
     <string name="very_bright_title">极亮</string>
     <string name="do_not_set_title">不设置</string>
 
+    <string name="tips_title">需要到显示设置里面关闭自动亮度，显示智能才能准确工作。</string>
+
 </resources>
