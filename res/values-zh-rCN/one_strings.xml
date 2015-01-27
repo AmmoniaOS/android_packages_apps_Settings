@@ -50,10 +50,25 @@
     <string name="carrier_size_style_small">小</string>
     <string name="carrier_size_style_big">大</string>
 
-    <string name="smarter_control">智能调控</string>
+    <string name="smarter_control">OneUI 控制</string>
 
     <string name="smarter_brightness_title">昼夜亮度</string>
     <string name="smarter_brightness_summary">根据昼夜智能调节亮度</string>
     <string name="no_smarter_brightness_summary">需要关闭自动亮度</string>
+
+    <string name="power_saving_scheme_title">省电方案</string>
+    <string name="display_smarter_title">显示智能</string>
+
+    <string name="smallhours_changes_title">凌晨亮度</string>
+    <string name="morninghours_changes_title">早晨亮度</string>
+    <string name="noonhours_changes_title">下午亮度</string>
+    <string name="nighthours_changes_title">夜晚亮度</string>
+
+    <string name="very_dark_title">极暗</string>
+    <string name="slightly_dark_title">稍暗</string>
+    <string name="normal_title">正常</string>
+    <string name="little_light_title">稍亮</string>
+    <string name="very_bright_title">极亮</string>
+    <string name="do_not_set_title">不设置</string>
 
 </resources>

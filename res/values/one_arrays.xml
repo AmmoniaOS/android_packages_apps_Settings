@@ -41,6 +41,7 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+
     <string-array name="entries_carrier_size_style" translatable="false">
         <item>@string/carrier_size_style_normal</item>
         <item>@string/carrier_size_style_small</item>
@@ -51,6 +52,24 @@
         <item>0</item>
         <item>4</item>
         <item>6</item>
+    </string-array>
+
+    <string-array name="brightness_change_entries" translatable="false">
+        <item>@string/do_not_set_title</item>
+        <item>@string/very_dark_title</item>
+        <item>@string/slightly_dark_title</item>
+        <item>@string/normal_title</item>
+        <item>@string/little_light_title</item>
+        <item>@string/very_bright_title</item>
+    </string-array>
+
+    <string-array name="brightness_change_values" translatable="false">
+        <item>0</item>
+        <item>2</item>
+        <item>30</item>
+        <item>80</item>
+        <item>100</item>
+        <item>120</item>
     </string-array>
 
 </resources>

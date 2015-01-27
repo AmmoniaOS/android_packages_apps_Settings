@@ -17,15 +17,66 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <PreferenceScreen
-        android:key="battery_save"
-        android:title="@string/battery_save_mode"
-        android:fragment="com.android.settings.fuelgauge.BatterySaverSettings" />
+    <PreferenceCategory
+        android:title="@string/power_saving_scheme_title" >
+
+    <ListPreference
+        android:key="power_save_setting"
+        android:title="@string/power_save_setting_title"
+        android:dialogTitle="@string/power_save_setting_title"
+        android:entries="@array/power_save_setting_entries"
+        android:entryValues="@array/power_save_setting_values"/>
+
+    <!-- Feature description text -->
+    <Preference
+        android:key="description"
+        android:summary="@*android:string/battery_saver_description"
+        android:persistent="false"
+        android:selectable="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/display_smarter_title" >
     
     <SwitchPreference
         android:key="smarter_brightness"
         android:title="@string/smarter_brightness_title"
         android:summary="@string/smarter_brightness_summary"
         android:defaultValue="false" />
+
+    <ListPreference
+        android:key="smallhours_changes"
+        android:title="@string/smallhours_changes_title"
+        android:dialogTitle="@string/smallhours_changes_title"
+        android:entries="@array/brightness_change_entries"
+        android:entryValues="@array/brightness_change_values"
+        android:dependency="smarter_brightness" />
+
+    <ListPreference
+        android:key="morninghours_changes"
+        android:title="@string/morninghours_changes_title"
+        android:dialogTitle="@string/morninghours_changes_title"
+        android:entries="@array/brightness_change_entries"
+        android:entryValues="@array/brightness_change_values"
+        android:dependency="smarter_brightness" />
+
+    <ListPreference
+        android:key="noonhours_changes"
+        android:title="@string/noonhours_changes_title"
+        android:dialogTitle="@string/noonhours_changes_title"
+        android:entries="@array/brightness_change_entries"
+        android:entryValues="@array/brightness_change_values"
+        android:dependency="smarter_brightness" />
+
+    <ListPreference
+        android:key="nighthours_changes"
+        android:title="@string/nighthours_changes_title"
+        android:dialogTitle="@string/nighthours_changes_title"
+        android:entries="@array/brightness_change_entries"
+        android:entryValues="@array/brightness_change_values"
+        android:dependency="smarter_brightness" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
