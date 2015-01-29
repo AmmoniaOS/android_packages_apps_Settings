@@ -113,7 +113,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
             getPreferenceScreen().removePreference(mDisplaySmarter);
             Settings.System.putInt(resolver,
                  Settings.System.SMARTER_BRIGHTNESS, 0);
-            mTips.setSummary(R.String.tips_title);
+            mTips.setSummary(R.string.tips_title);
         }
     }
 
