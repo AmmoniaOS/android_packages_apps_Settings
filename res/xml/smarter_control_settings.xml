@@ -17,10 +17,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <PreferenceScreen
-           android:key="update"
-           android:title="@string/system_update_title">
-        <intent android:action="android.intent.action.SHOW_SYSTEM_UPDATE" />
+    <!-- System Updates -->
+    <PreferenceScreen android:key="system_updates"
+         android:title="@string/system_update_title">
+         <intent android:action="android.intent.action.MAIN"
+               android:targetPackage="com.android.one"
+               android:targetClass="com.android.one.UpdaterSettings" />
     </PreferenceScreen>
 
     <PreferenceCategory
@@ -91,5 +93,16 @@
         android:key="tips"
         android:persistent="false"
         android:selectable="false" />
+
+    <PreferenceCategory
+        android:title="@string/ui_control_title" >
+    
+    <SwitchPreference
+        android:key="date_second"
+        android:title="@string/date_second_title"
+        android:summary="@string/date_second_summary"
+        android:defaultValue="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

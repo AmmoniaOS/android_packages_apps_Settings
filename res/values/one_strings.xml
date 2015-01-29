@@ -30,6 +30,7 @@
     <string name="power_save_setting_off">Closed</string>
     <string name="power_save_setting_always_open">Always Open</string>
     <string name="power_save_setting_screen_saving">Off Screen Saving</string>
+    <string name="low_save_setting_saving">Low battery start</string>
 
     <string name="show_status_bar_carrier_title">Status bar carrier</string>
     <string name="show_status_bar_carrier_summary">Show carrier</string>
@@ -73,5 +74,9 @@
     <string name="do_not_set_title">default</string>
 
     <string name="tips_title">The need to display settings and turn off automatic brightness, can accurately display intelligence work.</string>
+
+    <string name="ui_control_title">UIControl</string>
+    <string name="date_second_title">Time display seconds</string>
+    <string name="date_second_summary">Let the time accurate to seconds</string>
 
 </resources>

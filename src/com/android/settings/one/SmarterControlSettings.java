@@ -21,11 +21,17 @@ import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.UserHandle;
 import android.preference.ListPreference;
 import android.preference.SwitchPreference;
+import android.preference.PreferenceScreen;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -33,6 +39,9 @@ import android.provider.Settings;
 import android.provider.Settings.Global;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import android.util.Log;
 
 public class SmarterControlSettings extends SettingsPreferenceFragment 
              implements OnPreferenceChangeListener {
@@ -47,6 +56,8 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private static final String KEY_POWER_SAVE_SETTING = "power_save_setting";
     private static final String KEY_TIPS = "tips";
     private static final String KEY_DISPLAY_SMARTER = "display_smarter";
+    private static final String KEY_SYSTEM_UPDATES = "system_updates";
+    private static final String KEY_DATE_SECOND = "date_second";
 
     private SwitchPreference mSmarterBrightness;
     private ListPreference mSmallhours;
@@ -56,6 +67,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private ListPreference mPowerSaveSettings;
     private Preference mTips;
     private PreferenceCategory mDisplaySmarter;
+    private SwitchPreference mDateScond;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +127,19 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
                  Settings.System.SMARTER_BRIGHTNESS, 0);
             mTips.setSummary(R.string.tips_title);
         }
+
+        // Only the owner should see the Updater settings, if it exists
+        if (UserHandle.myUserId() == UserHandle.USER_OWNER) {
+            removePreferenceIfPackageNotInstalled(findPreference(KEY_SYSTEM_UPDATES));
+        } else {
+            getPreferenceScreen().removePreference(findPreference(KEY_SYSTEM_UPDATES));
+        }
+
+        mDateScond = (SwitchPreference) findPreference(KEY_DATE_SECOND);
+        mDateScond.setChecked((Settings.System.getInt(resolver,
+                 Settings.System.CLOCK_USE_SECOND, 0) == 1));
+        mDateScond.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -127,7 +152,11 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
         ContentResolver resolver = getActivity().getContentResolver();
         Intent i = new Intent();
         i.setAction(Intent.ACTION_SCREENUI_SWITCHED);
-        if (preference == mSmarterBrightness) {
+        if (preference == mDateScond) {
+             boolean value = (Boolean) newValue;
+             Settings.System.putInt(resolver, Settings.System.CLOCK_USE_SECOND, value ? 1 : 0);
+             return true;
+         } else if (preference == mSmarterBrightness) {
              boolean value = (Boolean) newValue;
              Settings.System.putInt(resolver, Settings.System.SMARTER_BRIGHTNESS, value ? 1 : 0);
              return true;
@@ -138,7 +167,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
                     resolver, Settings.System.POWER_SAVE_SETTINGS, PowerSaveSettings);
             mPowerSaveSettings.setSummary(mPowerSaveSettings.getEntries()[index]);
             Settings.Global.putInt(resolver,
-                Settings.Global.LOW_POWER_MODE_TRIGGER_LEVEL, 0);
+                Settings.Global.LOW_POWER_MODE_TRIGGER_LEVEL,(PowerSaveSettings == 3 ? 1 : 0));
             return true;
         } else if (preference == mSmallhours) {
             int Smallhours = Integer.valueOf((String) newValue);
@@ -172,6 +201,30 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
             mNighthours.setSummary(mNighthours.getEntries()[index]);
             getActivity().sendBroadcast(i);
             return true;
+        }
+        return false;
+    }
+
+    private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
+        String intentUri=((PreferenceScreen) preference).getIntent().toUri(1);
+        Pattern pattern = Pattern.compile("component=([^/]+)/");
+        Matcher matcher = pattern.matcher(intentUri);
+
+        String packageName=matcher.find()?matcher.group(1):null;
+        if(packageName != null) {
+            try {
+                PackageInfo pi = getPackageManager().getPackageInfo(packageName,
+                        PackageManager.GET_ACTIVITIES);
+                if (!pi.applicationInfo.enabled) {
+                    Log.e(TAG,"package "+packageName+" is disabled, hiding preference.");
+                    getPreferenceScreen().removePreference(preference);
+                    return true;
+                }
+            } catch (NameNotFoundException e) {
+                Log.e(TAG,"package "+packageName+" not installed, hiding preference.");
+                getPreferenceScreen().removePreference(preference);
+                return true;
+            }
         }
         return false;
     }

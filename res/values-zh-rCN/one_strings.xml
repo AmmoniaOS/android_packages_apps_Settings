@@ -29,6 +29,7 @@
     <string name="power_save_setting_off">关闭</string>
     <string name="power_save_setting_always_open">一直开启</string>
     <string name="power_save_setting_screen_saving">熄屏节能</string>
+    <string name="low_save_setting_saving">低电量启动</string>
     
     <string name="show_status_bar_carrier_title">运营商名称</string>
     <string name="show_status_bar_carrier_summary">显示运营商名称</string>
@@ -74,5 +75,9 @@
     <string name="tips_title">需要到显示设置里面关闭自动亮度，显示智能才能准确工作。</string>
 
     <string name="system_update_title">固件升级</string>
+
+    <string name="ui_control_title">UI控制</string>
+    <string name="date_second_title">时间显示秒</string>
+    <string name="date_second_summary">让时间精确到秒</string>
 
 </resources>
