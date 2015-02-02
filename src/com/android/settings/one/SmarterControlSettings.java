@@ -159,6 +159,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
          } else if (preference == mSmarterBrightness) {
              boolean value = (Boolean) newValue;
              Settings.System.putInt(resolver, Settings.System.SMARTER_BRIGHTNESS, value ? 1 : 0);
+             getActivity().sendBroadcast(i);
              return true;
          } else if (preference == mPowerSaveSettings) {
             int PowerSaveSettings = Integer.valueOf((String) newValue);
