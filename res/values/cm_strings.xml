@@ -268,7 +268,6 @@
     <string name="app_security_title">App security</string>
     <string name="sms_security_check_limit_title">SMS message limit</string>
     <string name="sms_security_check_limit_summary">Apps can send %d messages in 30 minutes before requiring confirmation</string>
-    <string name="sms_security_check_limit_default">30 (default)</string>
 
     <string name="spam_added_title">Added %1$s</string>
     <string name="spam_last_blocked_title">Last blocked %1$s</string>
@@ -281,11 +280,7 @@
 
     <!-- About phone screen, build date -->
     <string name="build_date">Build date</string>
-    <string name="build_date_default">2014-01-01-0000</string>
-
-    <!--- Advanced Settings -->
-    <string name="advanced_settings">Advanced settings</string>
-    <string name="advanced_settings_summary">Enable more settings options</string>
+    <string name="build_date_default" translatable="false">2014-01-01-0000</string>
 
     <string name="contributor_cloud_title">Contributors</string>
 
@@ -392,7 +387,7 @@
     <string name="status_bar_am_pm_info">24-hour clock is enabled</string>
     <string name="status_bar_am_pm_normal">Normal</string>
     <string name="status_bar_am_pm_small">Small</string>
-    <string name="status_bar_am_pm_hidden">Hidden (default)</string>
+    <string name="status_bar_am_pm_hidden">Hidden</string>
 
     <!-- Status bar - Battery -->
     <string name="status_bar_battery_style_title">Battery status style</string>
@@ -404,7 +399,7 @@
 
     <!-- Status bar - Battery percentage -->
     <string name="status_bar_battery_percentage_title">Battery percentage</string>
-    <string name="status_bar_battery_percentage_default">Hidden (default)</string>
+    <string name="status_bar_battery_percentage_default">Hidden</string>
     <string name="status_bar_battery_percentage_text_inside">Inside the icon</string>
     <string name="status_bar_battery_percentage_text_next">Next to the icon</string>
 
@@ -513,7 +508,7 @@
     <string name="app_ops_summaries_read_mms">read MMS</string>
     <string name="app_ops_summaries_write_mms">write MMS</string>
     <string name="app_ops_summaries_auto_start">auto start</string>
-    <string name="app_ops_summaries_nfc_change">nfc change</string>
+    <string name="app_ops_summaries_nfc_change">NFC change</string>
     <string name="app_ops_summaries_delete_sms">delete SMS</string>
     <string name="app_ops_summaries_delete_mms">delete MMS</string>
     <string name="app_ops_summaries_delete_contacts">delete contacts</string>
@@ -684,18 +679,25 @@
     <!-- Message when bluetooth dialog for pin entry is showing  when HIGH security enabled-->
     <string name="bluetooth_enter_pin_msg_hs">To pair with:<xliff:g id="bold">&lt;br>&lt;b></xliff:g><xliff:g id="device_name">%1$s</xliff:g><xliff:g id="end_bold">&lt;/b>&lt;br>&lt;br></xliff:g>Type the device\'s required PIN (16 digits or more):</string>
 
+    <!-- Bluetooth settings.  Message when connected to a device, except for pbap. [CHAR LIMIT=40] -->
+    <string name="bluetooth_connected_no_pbap">Connected (no phonebook access)</string>
+
     <!-- Bluetooth settings.  The user-visible string that is used whenever referring to the DUN profile. -->
     <string name="bluetooth_profile_dun">Dial-up Network Access</string>
     <!-- Bluetooth settings.  The user-visible string that is used whenever referring to the SAP profile. -->
     <string name="bluetooth_profile_sap">SIM Access</string>
 
     <!-- Bluetooth settings.  Connection options screen.  The summary for the DUN checkbox preference when DUN is connected. -->
-    <string name="bluetooth_dun_profile_summary_connected">Connected to DUN Server</string>
+    <string name="bluetooth_dun_profile_summary_connected">Connected to DUN server</string>
+    <!-- Bluetooth settings.  Connection options screen.  The summary for the pbap checkbox preference when pbap is connected. -->
+    <string name="bluetooth_pbap_profile_summary_connected">Connected to pbap server</string>
     <!-- Bluetooth settings.  Connection options screen.  The summary for the SAP checkbox preference when SAP is connected. -->
-    <string name="bluetooth_sap_profile_summary_connected">Connected to SIM Access Server</string>
+    <string name="bluetooth_sap_profile_summary_connected">Connected to SIM Access server</string>
 
     <!-- Bluetooth settings.  Connection options screen.  The summary for the DUN checkbox preference that describes how checking it will set the DUN profile as preferred. -->
     <string name="bluetooth_dun_profile_summary_use_for">Use for Dial-up Network Access</string>
+    <!-- Bluetooth settings.  Connection options screen.  The summary for the pbap checkbox preference that describes how checking it will set the pbap profile as preferred. -->
+    <string name="bluetooth_pbap_profile_summary_use_for">Use for Contact sharing</string>
     <!-- Bluetooth settings.  Connection options screen.  The summary for the SAP checkbox preference that describes how checking it will set the SAP profile as preferred. -->
     <string name="bluetooth_sap_profile_summary_use_for">Use for SIM Access</string>
     <!-- Bluetooth settings.  A checkbox to set if we should accept all the file types regardless of their presence in MIME type whitelist -->
@@ -792,13 +794,14 @@
     <string name="sim_enabled">enabled</string>
     <string name="sim_disabled">disabled</string>
     <string name="sim_missing">missing or faulty</string>
-    <string name="sim_enabler_need_disable_sim">SIM card will be deactivated. Do you want to continue?</string>
+    <string name="sim_enabler_need_disable_sim">Deactivate SIM card?</string>
     <string name="sim_enabler_airplane_on">Unable to perform the operation while airplane mode is on.</string>
     <string name="sim_enabler_in_call">Unable to perform the operation while in call.</string>
     <string name="sim_enabler_both_inactive">Can\'t disable all SIM cards</string>
     <string name="sim_enabler_sim">SIM</string>
-    <string name="sim_enabler_enabling">Activating\2026</string>
-    <string name="sim_enabler_disabling">Deactivating\2026</string>
+    <string name="sim_enabler_enabling">Activating <xliff:g id="name">%s</xliff:g>\u2026</string>
+    <string name="sim_enabler_disabling">Deactivating <xliff:g id="name">%s</xliff:g>\u2026</string>
+    <string name="sim_enabler_deactivate">Deactivate</string>
     <string name="sub_activate_success">SIM activated.</string>
     <string name="sub_deactivate_success">SIM deactivated.</string>
 
@@ -817,7 +820,7 @@
     <string name="menu_hidden_apps_delete">Reset</string>
     <string name="menu_hidden_apps_reset_lock">Reset pattern lock</string>
     <string name="protected_apps">Protected apps</string>
-    <string name="saving_protected_components">Saving component state</string>
+    <string name="saving_protected_components">Saving component state\u2026</string>
 
     <string name="stats_collection_title">Stats collection</string>
     <string name="stats_collection_summary">When enabled, allows metrics collection</string>
@@ -946,9 +949,9 @@
     <string name="qs_tile_performance">Performance</string>
     <string name="qs_tile_nfc">NFC</string>
     <string name="qs_tile_compass">Compass</string>
-    <string name="qs_tile_lockscreen">Lockscreen</string>
+    <string name="qs_tile_lockscreen">Lock screen</string>
     <string name="qs_tile_lte">LTE</string>
-    <string name="qs_tile_visualizer">AudioFX</string>
+    <string name="qs_tile_visualizer" translatable="false">AudioFX</string>
     <string name="qs_tile_screen_timeout">Screen timeout</string>
 
     <string name="qs_main_tiles_title">Enlarge first row</string>
@@ -987,13 +990,13 @@
     <string name="expanded_hide_status">Hide status bar</string>
     <string name="expanded_hide_navigation">Hide navigation bar</string>
     <string name="expanded_hide_both">Hide both</string>
-    <string name="expanded_nothing_to_show">To add a custom per-app configuration for expanded state, set "Enabled for all" to the off position</string>
+    <string name="expanded_nothing_to_show">To add a custom per-app configuration for expanded state, set \'Enabled for all\' to the off position</string>
     <string name="expanded_desktop_state">Expanded state</string>
     <string name="expanded_enabled_for_all">Enabled for all</string>
     <string name="expanded_user_configurable">User configurable</string>
 
     <string name="lockscreen_settings_title">Lock screen</string>
-    <string name="lockscreen_targets_message">Lockscreen shortcuts</string>
+    <string name="lockscreen_targets_message">Lock screen shortcuts</string>
     <string name="lockscreen_default_target">Default</string>
     <string name="lockscreen_message">Tap an icon on the left or right to reassign a lock screen shortcut.</string>
     <string name="lockscreen_choose_action_title">Choose action</string>
