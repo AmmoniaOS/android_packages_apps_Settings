@@ -59,6 +59,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private static final String KEY_SYSTEM_UPDATES = "system_updates";
     private static final String KEY_DATE_SECOND = "date_second";
     private static final String KEY_SLEEP_MODE = "sleep_changes";
+    private static final String KEY_SMARTER_AIRPLANE = "smarter_airplane";
 
     private SwitchPreference mSmarterBrightness;
     private ListPreference mSmallhours;
@@ -70,6 +71,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private PreferenceCategory mDisplaySmarter;
     private SwitchPreference mDateScond;
     private ListPreference mSleepmodeSettings;
+    private SwitchPreference mSmarterAirplane;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -149,6 +151,11 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
         mSleepmodeSettings.setSummary(mSleepmodeSettings.getEntry());
         mSleepmodeSettings.setOnPreferenceChangeListener(this);
 
+        mSmarterAirplane = (SwitchPreference) findPreference(KEY_SMARTER_AIRPLANE);
+        mSmarterAirplane.setChecked((Settings.Global.getInt(resolver,
+                 Settings.Global.SMARTER_AIRPLANE, 0) == 1));
+        mSmarterAirplane.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -211,7 +218,11 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
                     resolver, Settings.Global.SMARTER_SLEEP, SleepmodeSettings);
             mSleepmodeSettings.setSummary(mSleepmodeSettings.getEntries()[index]);
             return true;
-        }
+        } else if (preference == mSmarterAirplane) {
+             boolean value = (Boolean) newValue;
+             Settings.Global.putInt(resolver, Settings.Global.SMARTER_AIRPLANE, value ? 1 : 0);
+             return true;
+         }
         return false;
     }
 

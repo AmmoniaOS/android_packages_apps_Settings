@@ -103,6 +103,12 @@
         android:dialogTitle="@string/smarter_sleep_changes_title"
         android:entries="@array/sleep_change_entries"
         android:entryValues="@array/sleep_change_values" />
+    
+    <SwitchPreference
+        android:key="airplane_changes"
+        android:title="@string/airplane_changes_title"
+        android:summary="@string/airplane_changes_summary"
+        android:defaultValue="false" />
 
     </PreferenceCategory>
 

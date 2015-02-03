@@ -87,4 +87,7 @@
     <string name="noonhours_sleep_changes_title">Noonhours mute</string>
     <string name="nighthours_sleep_changes_title">Nighthours mute</string>
 
+    <string name="airplane_changes_title">Morning sleep</string>
+    <string name="airplane_changes_summary">In the early morning flight mode enabled</string>
+
 </resources>

@@ -88,4 +88,7 @@
     <string name="noonhours_sleep_changes_title">下午静音</string>
     <string name="nighthours_sleep_changes_title">夜晚静音</string>
 
+    <string name="airplane_changes_title">凌晨舒眠</string>
+    <string name="airplane_changes_summary">在凌晨时段启用飞行模式</string>
+
 </resources>
