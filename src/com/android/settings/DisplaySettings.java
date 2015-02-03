@@ -166,8 +166,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
 
-        boolean mSmarterBrightnessState = Settings.System.getInt(resolver,
-                 Settings.System.SMARTER_BRIGHTNESS, 0) == 1;
+        boolean mSmarterBrightnessState = Settings.Global.getInt(resolver,
+                 Settings.Global.SMARTER_BRIGHTNESS, 0) == 1;
         if (isAutomaticBrightnessAvailable(getResources()) && !mSmarterBrightnessState) {
             mAutoBrightnessPreference = (SwitchPreference) findPreference(KEY_AUTO_BRIGHTNESS);
             mAutoBrightnessPreference.setOnPreferenceChangeListener(this);

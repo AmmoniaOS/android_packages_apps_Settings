@@ -178,6 +178,11 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             mVolumeKeyCursorControl = initActionList(KEY_VOLUME_KEY_CURSOR_CONTROL,
                     cursorControlAction);
 
+            mVolumeAnswerCall = (SwitchPreference) prefScreen.findPreference(KEY_VOLUME_ANSWER_CALL);
+            mVolumeAnswerCall.setChecked((Settings.System.getInt(getContentResolver(),
+                    Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, 0) == 1));
+            mVolumeAnswerCall.setOnPreferenceChangeListener(this);
+
             int swapVolumeKeys = Settings.System.getInt(getContentResolver(),
                     Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, 0);
             mSwapVolumeButtons = (SwitchPreference)
@@ -375,22 +380,6 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             if (!showVolumeWake) {
                 result.put(Settings.System.VOLUME_WAKE_SCREEN, CATEGORY_VOLUME);
         }
-
-        int cursorControlAction = Settings.System.getInt(resolver,
-                Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0);
-        mVolumeKeyCursorControl = initActionList(KEY_VOLUME_KEY_CURSOR_CONTROL,
-                cursorControlAction);
-
-        mVolumeAnswerCall = (SwitchPreference) prefScreen.findPreference(KEY_VOLUME_ANSWER_CALL);
-        mVolumeAnswerCall.setChecked((Settings.System.getInt(getContentResolver(),
-                         Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, 0) == 1));
-        mVolumeAnswerCall.setOnPreferenceChangeListener(this);
-
-        int swapVolumeKeys = Settings.System.getInt(getContentResolver(),
-                  Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, 0);
-        mSwapVolumeButtons = (SwitchPreference)
-                  prefScreen.findPreference(KEY_SWAP_VOLUME_BUTTONS);
-        mSwapVolumeButtons.setChecked(swapVolumeKeys > 0);
 
         } else {
             result.put(CATEGORY_VOLUME, null);
