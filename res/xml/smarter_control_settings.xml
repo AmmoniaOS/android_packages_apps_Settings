@@ -37,7 +37,7 @@
 
     <!-- Feature description text -->
     <Preference
-        android:key="description"
+        android:key="tips"
         android:summary="@*android:string/battery_saver_description"
         android:persistent="false"
         android:selectable="false" />
@@ -87,12 +87,6 @@
         android:dependency="smarter_brightness" />
 
     </PreferenceCategory>
-
-    <!-- Feature description text -->
-    <Preference
-        android:key="tips"
-        android:persistent="false"
-        android:selectable="false" />
 
     <PreferenceCategory
         android:title="@string/smarter_sleep_title" >
