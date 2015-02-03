@@ -74,4 +74,20 @@
         <item>120</item>
     </string-array>
 
+    <string-array name="sleep_change_entries" translatable="false">
+        <item>@string/smarter_sleep_off_title</item>
+        <item>@string/smallhours_sleep_changes_title</item>
+        <item>@string/morninghours_sleep_changes_title</item>
+        <item>@string/noonhours_sleep_changes_title</item>
+        <item>@string/nighthours_sleep_changes_title</item>
+    </string-array>
+
+    <string-array name="sleep_change_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
 </resources>

@@ -58,6 +58,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private static final String KEY_DISPLAY_SMARTER = "display_smarter";
     private static final String KEY_SYSTEM_UPDATES = "system_updates";
     private static final String KEY_DATE_SECOND = "date_second";
+    private static final String KEY_SLEEP_MODE = "sleep_changes";
 
     private SwitchPreference mSmarterBrightness;
     private ListPreference mSmallhours;
@@ -68,6 +69,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private Preference mTips;
     private PreferenceCategory mDisplaySmarter;
     private SwitchPreference mDateScond;
+    private ListPreference mSleepmodeSettings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,6 +142,13 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
                  Settings.System.CLOCK_USE_SECOND, 0) == 1));
         mDateScond.setOnPreferenceChangeListener(this);
 
+        mSleepmodeSettings = (ListPreference) findPreference(KEY_SLEEP_MODE);
+        int SleepmodeSettings = Settings.Global.getInt(
+                resolver, Settings.Global.SMARTER_SLEEP, 0);
+        mSleepmodeSettings.setValue(String.valueOf(SleepmodeSettings));
+        mSleepmodeSettings.setSummary(mSleepmodeSettings.getEntry());
+        mSleepmodeSettings.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -194,6 +203,13 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
             Settings.Global.putInt(
                     resolver, Settings.Global.NIGHT_BRIGHTNESS, Nighthours);
             mNighthours.setSummary(mNighthours.getEntries()[index]);
+            return true;
+        } else if (preference == mSleepmodeSettings) {
+            int SleepmodeSettings = Integer.valueOf((String) newValue);
+            int index = mSleepmodeSettings.findIndexOfValue((String) newValue);
+            Settings.Global.putInt(
+                    resolver, Settings.Global.SMARTER_SLEEP, SleepmodeSettings);
+            mSleepmodeSettings.setSummary(mSleepmodeSettings.getEntries()[index]);
             return true;
         }
         return false;
