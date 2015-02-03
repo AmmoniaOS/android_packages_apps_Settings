@@ -100,7 +100,7 @@
     <ListPreference
         android:key="sleep_changes"
         android:title="@string/smarter_sleep_changes_title"
-        android:dialogTitle="@string/nighthours_changes_title"
+        android:dialogTitle="@string/smarter_sleep_changes_title"
         android:entries="@array/sleep_change_entries"
         android:entryValues="@array/sleep_change_values" />
 
