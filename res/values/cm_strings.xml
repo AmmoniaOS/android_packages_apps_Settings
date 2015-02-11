@@ -278,6 +278,8 @@
     <!-- About phone screen, CyanogenMod version -->
     <string name="mod_version">CyanogenMod version</string>
     <string name="mod_version_default">Unknown</string>
+
+    <!-- About phone screen, model name -->
     <string name="model_name">Model name</string>
 
     <!-- About phone screen, build date -->
@@ -285,6 +287,9 @@
     <string name="build_date_default" translatable="false">2014-01-01-0000</string>
 
     <string name="contributor_cloud_title">Contributors</string>
+
+    <!-- About phone screen, service state -->
+    <string name="phone_service_state">Voice: <xliff:g id="voice_state">%1$s</xliff:g>, data: <xliff:g id="data_state">%2$s</xliff:g></string>
 
     <!--- Tap To Wake -->
     <string name="double_tap_to_wake_title">Double-tap to wake</string>
@@ -450,6 +455,12 @@
     <!-- Whether to display IME switcher notifcation -->
     <string name="ime_switcher_notify">Selector icon</string>
     <string name="ime_switcher_notify_summary">Display input method selector icon</string>
+
+    <!-- Per app controls for LP keyguard notifications -->
+    <string name="app_notification_show_on_keyguard_title">Show on lock screen</string>
+    <string name="app_notification_show_on_keyguard_summary">Show notifications from this app on the lock screen</string>
+    <string name="app_notification_no_ongoing_on_keyguard_title">Disable persistent notification on lock screen</string>
+    <string name="app_notification_no_ongoing_on_keyguard_summary">Never show persistent notifications from this app on the lock screen</string>
 
     <!-- High touch sensitivity -->
     <string name="high_touch_sensitivity_title">High touch sensitivity</string>
@@ -985,6 +996,9 @@
     <string name="expanded_hide_both">Hide both</string>
     <string name="expanded_nothing_to_show">To add a custom per-app configuration for expanded state, set \'Enabled for all\' to the off position</string>
     <string name="expanded_enabled_for_all">Enabled for all</string>
+    <string name="expanded_desktop_style">Expanded desktop style</string>
+    <string name="expanded_desktop_style_description">Choose a default expanded desktop style</string>
+    <string name="expanded_desktop_title">Expanded desktop options</string>
 
     <string name="lockscreen_targets_message">Lock screen shortcuts</string>
     <string name="lockscreen_default_target">Default</string>
