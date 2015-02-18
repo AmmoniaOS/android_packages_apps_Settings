@@ -92,10 +92,10 @@
     <string name="airplane_changes_summary">在凌晨时段启用飞行模式</string>
 
     <string name="night_color_change_title">夜间颜色</string>
-    <string name="night_color_change_normal_title">正常</string>
+    <string name="night_color_change_off_title">关闭</string>
     <string name="night_color_change_red_title">红色</string>
     <string name="night_color_change_black_title">黑色</string>
     <string name="night_color_change_yellow_title">黄色</string>
-    <string name="night_color_change_green_title">绿色</string>
+    <string name="night_color_change_cold_title">冷色</string>
 
 </resources>
