@@ -234,7 +234,6 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
          } else if (preference == mNightColor) {
             int NightColor = Integer.valueOf((String) newValue);
             int index = mNightColor.findIndexOfValue((String) newValue);
-            ChangesNightColor(NightColor);
             Settings.Global.putInt(
                     resolver, Settings.Global.NIGHT_COLOR_MODE, NightColor);
             mSleepmodeSettings.setSummary(mNightColor.getEntries()[index]);
@@ -265,61 +264,6 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
             }
         }
         return false;
-    }
-
-    private void ChangesNightColor(int v) {
-         ContentResolver resolver = getActivity().getContentResolver();
-         switch(v) {
-             case 1:
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_BRI, 100);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_RED, 255);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_GREEN, 0);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_YELLOW, 0);
-             break;
-             case 2:
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_BRI, 150);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_RED, 0);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_GREEN, 0);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_YELLOW, 0);
-             break;
-             case 3:
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_BRI, 80);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_RED, 255);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_GREEN, 255);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_YELLOW, 0);
-             break;
-             case 4:
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_BRI, 255);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_RED, 255);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_GREEN, 255);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_YELLOW, 0);
-             break;
-             case 0:
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_BRI, 0);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_RED, 224);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_GREEN, 224);
-               Settings.Global.putInt(resolver,
-             Settings.Global.NIGHT_COLOR_YELLOW, 240);
-         }
     }
 
 }
