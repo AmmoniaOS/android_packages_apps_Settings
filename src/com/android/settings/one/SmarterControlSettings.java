@@ -236,7 +236,7 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
             int index = mNightColor.findIndexOfValue((String) newValue);
             Settings.Global.putInt(
                     resolver, Settings.Global.NIGHT_COLOR_MODE, NightColor);
-            mSleepmodeSettings.setSummary(mNightColor.getEntries()[index]);
+            mNightColor.setSummary(mNightColor.getEntries()[index]);
             return true;
         }
         return false;
