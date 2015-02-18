@@ -40,6 +40,8 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
 
+import com.android.internal.util.cm.ScreenType;
+
 import com.android.settings.cyanogenmod.ButtonBacklightBrightness;
 
 import com.android.settings.search.BaseSearchIndexProvider;
@@ -72,7 +74,6 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String KEY_HOME_ANSWER_CALL = "home_answer_call";
     private static final String KEY_VOLUME_ANSWER_CALL = "volume_answer_call";
     private static final String KEY_BLUETOOTH_INPUT_SETTINGS = "bluetooth_input_settings";
-
     private static final String CATEGORY_POWER = "power_key";
     private static final String CATEGORY_HOME = "home_key";
     private static final String CATEGORY_BACK = "back_key";
@@ -82,7 +83,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String CATEGORY_CAMERA = "camera_key";
     private static final String CATEGORY_VOLUME = "volume_keys";
     private static final String CATEGORY_BACKLIGHT = "key_backlight";
-    private static final String CATEGORY_NAVBAR = "navigation_bar";
+    private static final String CATEGORY_NAVBAR = "navigation_bar_category";
 
     // Available custom actions to perform on a key press.
     // Must match values for KEY_HOME_LONG_PRESS_ACTION in:
@@ -187,16 +188,15 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                     Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, 0);
             mSwapVolumeButtons = (SwitchPreference)
                     prefScreen.findPreference(KEY_SWAP_VOLUME_BUTTONS);
-            mSwapVolumeButtons.setChecked(swapVolumeKeys > 0);
+            if (mSwapVolumeButtons != null) {
+                mSwapVolumeButtons.setChecked(swapVolumeKeys > 0);
+            }
         }
 
         if (mNavigationPreferencesCat.getPreferenceCount() == 0) {
             // Hide navigation bar category
             prefScreen.removePreference(mNavigationPreferencesCat);
         }
-
-        Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
-                getPreferenceScreen(), KEY_BLUETOOTH_INPUT_SETTINGS);
     }
 
     private static Map<String, String> getPreferencesToRemove(ButtonSettings settings,
@@ -393,7 +393,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             boolean hasNavBar = WindowManagerGlobal.getWindowManagerService().hasNavigationBar()
                     || forceNavbar;
 
-            if (!Utils.isPhone(context)) {
+            if (!ScreenType.isPhone(context)) {
                 result.put(KEY_NAVIGATION_BAR_LEFT, CATEGORY_NAVBAR);
             }
 
@@ -440,6 +440,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
 
     private ListPreference initActionList(String key, int value) {
         ListPreference list = (ListPreference) getPreferenceScreen().findPreference(key);
+        if (list == null) return null;
         list.setValue(Integer.toString(value));
         list.setSummary(list.getEntry());
         list.setOnPreferenceChangeListener(this);
@@ -594,7 +595,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mSwapVolumeButtons) {
             int value = mSwapVolumeButtons.isChecked()
-                    ? (Utils.isTablet(getActivity()) ? 2 : 1) : 0;
+                    ? (ScreenType.isTablet(getActivity()) ? 2 : 1) : 0;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, value);
         } else if (preference == mDisableNavigationKeys) {
@@ -664,14 +665,6 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 public List<String> getNonIndexableKeys(Context context) {
                     ArrayList<String> result = new ArrayList<String>();
 
-                    Intent intent =
-                            new Intent("com.cyanogenmod.action.LAUNCH_BLUETOOTH_INPUT_SETTINGS");
-                    intent.setClassName("com.cyanogenmod.settings.device",
-                            "com.cyanogenmod.settings.device.BluetoothInputSettings");
-                    if (!Utils.doesIntentResolve(context, intent)) {
-                        result.add(KEY_BLUETOOTH_INPUT_SETTINGS);
-                    }
-
                     Map<String, String> items = getPreferencesToRemove(null, context);
                     for (String key : items.keySet()) {
                         result.add(key);
@@ -680,4 +673,4 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 }
             };
 
-}
+   }

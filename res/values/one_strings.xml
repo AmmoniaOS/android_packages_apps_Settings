@@ -90,4 +90,11 @@
     <string name="airplane_changes_title">Morning sleep</string>
     <string name="airplane_changes_summary">In the early morning flight mode enabled</string>
 
+    <string name="night_color_change_title">Night Color</string>
+    <string name="night_color_change_normal_title">Normal</string>
+    <string name="night_color_change_red_title">Red</string>
+    <string name="night_color_change_black_title">Black</string>
+    <string name="night_color_change_yellow_title">Yellow</string>
+    <string name="night_color_change_green_title">Green</string>
+
 </resources>
