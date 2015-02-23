@@ -1034,6 +1034,11 @@ public class SettingsActivity extends Activity
                     }
                     sa.recycle();
 
+                    sa = obtainStyledAttributes(attrs, R.styleable.DashboardTile);
+                    tile.switchControl = sa.getString(
+                            R.styleable.DashboardTile_switchClass);
+                    sa.recycle();
+
                     final int innerDepth = parser.getDepth();
                     while ((type=parser.next()) != XmlPullParser.END_DOCUMENT
                             && (type != XmlPullParser.END_TAG || parser.getDepth() > innerDepth)) {
