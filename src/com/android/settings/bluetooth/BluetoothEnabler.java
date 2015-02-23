@@ -80,7 +80,7 @@ public final class BluetoothEnabler extends GenericSwitchToggle {
     }
 
     private void init() {
-        LocalBluetoothManager manager = LocalBluetoothManager.getInstance(context);
+        LocalBluetoothManager manager = LocalBluetoothManager.getInstance(mContext);
         if (manager == null) {
             // Bluetooth is not supported
             mLocalAdapter = null;

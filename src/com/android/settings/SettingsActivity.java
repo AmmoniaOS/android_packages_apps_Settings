@@ -1034,11 +1034,6 @@ public class SettingsActivity extends Activity
                     }
                     sa.recycle();
 
-                    sa = obtainStyledAttributes(attrs, R.styleable.DashboardTile);
-                    tile.switchControl = sa.getString(
-                            R.styleable.DashboardTile_switchClass);
-                    sa.recycle();
-
                     final int innerDepth = parser.getDepth();
                     while ((type=parser.next()) != XmlPullParser.END_DOCUMENT
                             && (type != XmlPullParser.END_TAG || parser.getDepth() > innerDepth)) {
@@ -1089,6 +1084,11 @@ public class SettingsActivity extends Activity
                                     com.android.internal.R.styleable.PreferenceHeader_icon, 0);
                             tile.fragment = sa.getString(
                                     com.android.internal.R.styleable.PreferenceHeader_fragment);
+                            sa.recycle();
+
+                            sa = obtainStyledAttributes(attrs, R.styleable.DashboardTile);
+                            tile.switchControl = sa.getString(
+                                   R.styleable.DashboardTile_switchClass);
                             sa.recycle();
 
                             if (curBundle == null) {
