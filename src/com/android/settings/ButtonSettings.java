@@ -565,7 +565,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         } else if (preference == mVolumeAnswerCall) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(getContentResolver(),
-            Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, value ? 1 : 0);
+                Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, value ? 1 : 0);
+            return true;
         } else if (preference == mNavigationRecentsLongPressAction) {
             // RecentsLongPressAction is handled differently because it intentionally uses Settings.
             // Settings.System.
@@ -577,7 +578,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             if (putString.length() == 0) {
                 putString = null;
             }
-            Settings.Secure.putString(getContentResolver(), Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, putString);
+            Settings.Secure.putString(getContentResolver(),
+                Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, putString);
             return true;
         }
         return false;
