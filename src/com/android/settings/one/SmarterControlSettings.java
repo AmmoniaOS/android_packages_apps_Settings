@@ -86,8 +86,8 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
         mDisplaySmarter = (PreferenceCategory) findPreference(KEY_DISPLAY_SMARTER);
 
         mPowerSaveSettings = (ListPreference) findPreference(KEY_POWER_SAVE_SETTING);
-        int PowerSaveSettings = Settings.System.getInt(
-                resolver, Settings.System.POWER_SAVE_SETTINGS, 0);
+        int PowerSaveSettings = Settings.Global.getInt(
+                resolver, Settings.Global.POWER_SAVE_SETTINGS, 0);
         mPowerSaveSettings.setValue(String.valueOf(PowerSaveSettings));
         mPowerSaveSettings.setSummary(mPowerSaveSettings.getEntry());
         mPowerSaveSettings.setOnPreferenceChangeListener(this);
@@ -186,11 +186,11 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
          } else if (preference == mPowerSaveSettings) {
             int PowerSaveSettings = Integer.valueOf((String) newValue);
             int index = mPowerSaveSettings.findIndexOfValue((String) newValue);
-            Settings.System.putInt(
-                    resolver, Settings.System.POWER_SAVE_SETTINGS, PowerSaveSettings);
+            Settings.Global.putInt(
+                    resolver, Settings.Global.POWER_SAVE_SETTINGS, PowerSaveSettings);
             mPowerSaveSettings.setSummary(mPowerSaveSettings.getEntries()[index]);
-            Settings.Global.putInt(resolver,
-                Settings.Global.LOW_POWER_MODE_TRIGGER_LEVEL,(PowerSaveSettings == 3 ? 1 : 0));
+            Settings.Global.putInt(
+                    resolver, Settings.Global.LOW_POWER_MODE_TRIGGER_LEVEL, 0);
             return true;
         } else if (preference == mSmallhours) {
             int Smallhours = Integer.valueOf((String) newValue);
