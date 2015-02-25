@@ -58,9 +58,6 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private static final String KEY_DISPLAY_SMARTER = "display_smarter";
     private static final String KEY_SYSTEM_UPDATES = "system_updates";
     private static final String KEY_DATE_SECOND = "date_second";
-    private static final String KEY_SLEEP_MODE = "sleep_changes";
-    private static final String KEY_SMARTER_AIRPLANE = "airplane_changes";
-    private static final String KEY_NIGHT_COLOR = "nightcolor_changes";
 
     private SwitchPreference mSmarterBrightness;
     private ListPreference mSmallhours;
@@ -146,25 +143,6 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
                  Settings.System.CLOCK_USE_SECOND, 0) == 1));
         mDateScond.setOnPreferenceChangeListener(this);
 
-        mSleepmodeSettings = (ListPreference) findPreference(KEY_SLEEP_MODE);
-        int SleepmodeSettings = Settings.Global.getInt(
-                resolver, Settings.Global.SMARTER_SLEEP, 0);
-        mSleepmodeSettings.setValue(String.valueOf(SleepmodeSettings));
-        mSleepmodeSettings.setSummary(mSleepmodeSettings.getEntry());
-        mSleepmodeSettings.setOnPreferenceChangeListener(this);
-
-        mSmarterAirplane = (SwitchPreference) findPreference(KEY_SMARTER_AIRPLANE);
-        mSmarterAirplane.setChecked((Settings.Global.getInt(resolver,
-                 Settings.Global.SMARTER_AIRPLANE, 0) == 1));
-        mSmarterAirplane.setOnPreferenceChangeListener(this);
-
-        mNightColor = (ListPreference) findPreference(KEY_NIGHT_COLOR);
-        int NightColor = Settings.Global.getInt(
-                resolver, Settings.Global.NIGHT_COLOR_MODE, 0);
-        mNightColor.setValue(String.valueOf(NightColor));
-        mNightColor.setSummary(mNightColor.getEntry());
-        mNightColor.setOnPreferenceChangeListener(this);
-
     }
 
     @Override
@@ -219,24 +197,6 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
             Settings.Global.putInt(
                     resolver, Settings.Global.NIGHT_BRIGHTNESS, Nighthours);
             mNighthours.setSummary(mNighthours.getEntries()[index]);
-            return true;
-        } else if (preference == mSleepmodeSettings) {
-            int SleepmodeSettings = Integer.valueOf((String) newValue);
-            int index = mSleepmodeSettings.findIndexOfValue((String) newValue);
-            Settings.Global.putInt(
-                    resolver, Settings.Global.SMARTER_SLEEP, SleepmodeSettings);
-            mSleepmodeSettings.setSummary(mSleepmodeSettings.getEntries()[index]);
-            return true;
-        } else if (preference == mSmarterAirplane) {
-             boolean value = (Boolean) newValue;
-             Settings.Global.putInt(resolver, Settings.Global.SMARTER_AIRPLANE, value ? 1 : 0);
-             return true;
-         } else if (preference == mNightColor) {
-            int NightColor = Integer.valueOf((String) newValue);
-            int index = mNightColor.findIndexOfValue((String) newValue);
-            Settings.Global.putInt(
-                    resolver, Settings.Global.NIGHT_COLOR_MODE, NightColor);
-            mNightColor.setSummary(mNightColor.getEntries()[index]);
             return true;
         }
         return false;

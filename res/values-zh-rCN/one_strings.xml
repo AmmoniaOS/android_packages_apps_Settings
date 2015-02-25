@@ -80,22 +80,4 @@
     <string name="date_second_title">时间显示秒</string>
     <string name="date_second_summary">让时间精确到秒</string>
 
-    <string name="smarter_sleep_title">舒心策略</string>
-    <string name="smarter_sleep_changes_title">静音时段</string>
-    <string name="smarter_sleep_off_title">关闭</string>
-    <string name="smallhours_sleep_changes_title">凌晨静音</string>
-    <string name="morninghours_sleep_changes_title">早晨静音</string>
-    <string name="noonhours_sleep_changes_title">下午静音</string>
-    <string name="nighthours_sleep_changes_title">夜晚静音</string>
-
-    <string name="airplane_changes_title">凌晨舒眠</string>
-    <string name="airplane_changes_summary">在凌晨时段启用飞行模式</string>
-
-    <string name="night_color_change_title">夜间颜色</string>
-    <string name="night_color_change_off_title">关闭</string>
-    <string name="night_color_change_red_title">红色</string>
-    <string name="night_color_change_black_title">黑色</string>
-    <string name="night_color_change_yellow_title">黄色</string>
-    <string name="night_color_change_cold_title">冷色</string>
-
 </resources>

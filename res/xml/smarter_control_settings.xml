@@ -89,24 +89,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/smarter_sleep_title" >
-    
-    <ListPreference
-        android:key="sleep_changes"
-        android:title="@string/smarter_sleep_changes_title"
-        android:dialogTitle="@string/smarter_sleep_changes_title"
-        android:entries="@array/sleep_change_entries"
-        android:entryValues="@array/sleep_change_values" />
-    
-    <SwitchPreference
-        android:key="airplane_changes"
-        android:title="@string/airplane_changes_title"
-        android:summary="@string/airplane_changes_summary"
-        android:defaultValue="false" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:title="@string/ui_control_title" >
     
     <SwitchPreference
@@ -114,13 +96,6 @@
         android:title="@string/date_second_title"
         android:summary="@string/date_second_summary"
         android:defaultValue="false" />
-
-    <ListPreference
-        android:key="nightcolor_changes"
-        android:title="@string/night_color_change_title"
-        android:dialogTitle="@string/nighthours_changes_title"
-        android:entries="@array/night_color_change_entries"
-        android:entryValues="@array/night_color_change_values" />
 
     </PreferenceCategory>
 

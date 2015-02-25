@@ -79,22 +79,4 @@
     <string name="date_second_title">Time display seconds</string>
     <string name="date_second_summary">Let the time accurate to seconds</string>
 
-    <string name="smarter_sleep_title">Comfortable strategy</string>
-    <string name="smarter_sleep_changes_title">Silent period</string>
-    <string name="smarter_sleep_off_title">Close</string>
-    <string name="smallhours_sleep_changes_title">Smallhours mute</string>
-    <string name="morninghours_sleep_changes_title">Morninghours mute</string>
-    <string name="noonhours_sleep_changes_title">Noonhours mute</string>
-    <string name="nighthours_sleep_changes_title">Nighthours mute</string>
-
-    <string name="airplane_changes_title">Morning sleep</string>
-    <string name="airplane_changes_summary">In the early morning flight mode enabled</string>
-
-    <string name="night_color_change_title">Night Color</string>
-    <string name="night_color_change_off_title">Close</string>
-    <string name="night_color_change_red_title">Red</string>
-    <string name="night_color_change_black_title">Black</string>
-    <string name="night_color_change_yellow_title">Yellow</string>
-    <string name="night_color_change_cold_title">Cold</string>
-
 </resources>
