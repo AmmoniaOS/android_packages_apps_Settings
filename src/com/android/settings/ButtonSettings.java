@@ -78,6 +78,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String KEY_HOME_ANSWER_CALL = "home_answer_call";
     private static final String KEY_VOLUME_ANSWER_CALL = "volume_answer_call";
     private static final String KEY_BLUETOOTH_INPUT_SETTINGS = "bluetooth_input_settings";
+    private static final String KEY_VOLUME_MUSIC_CONTROLS = "volbtn_music_controls";
     private static final String CATEGORY_POWER = "power_key";
     private static final String CATEGORY_HOME = "home_key";
     private static final String CATEGORY_BACK = "back_key";
@@ -123,6 +124,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private ListPreference mAppSwitchPressAction;
     private ListPreference mAppSwitchLongPressAction;
     private ListPreference mVolumeKeyCursorControl;
+    private SwitchPreference mVolumeWakeScreen;
+    private SwitchPreference mVolumeMusicControls;
     private SwitchPreference mSwapVolumeButtons;
     private SwitchPreference mDisableNavigationKeys;
     private SwitchPreference mNavigationBarLeftPref;
@@ -160,7 +163,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         mNavigationBarLeftPref = (SwitchPreference) findPreference(KEY_NAVIGATION_BAR_LEFT);
 
         // Navigation bar recents long press activity needs custom setup
-        mNavigationRecentsLongPressAction = initRecentsLongPressAction(KEY_NAVIGATION_RECENTS_LONG_PRESS);
+        mNavigationRecentsLongPressAction =
+                initRecentsLongPressAction(KEY_NAVIGATION_RECENTS_LONG_PRESS);
 
         HashMap<String, String> prefsToRemove = (HashMap<String, String>)
                 getPreferencesToRemove(this, getActivity());
@@ -204,6 +208,16 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         if (mNavigationPreferencesCat.getPreferenceCount() == 0) {
             // Hide navigation bar category
             prefScreen.removePreference(mNavigationPreferencesCat);
+        }
+
+        mVolumeWakeScreen = (SwitchPreference) findPreference(Settings.System.VOLUME_WAKE_SCREEN);
+        mVolumeMusicControls = (SwitchPreference) findPreference(KEY_VOLUME_MUSIC_CONTROLS);
+
+        if (mVolumeWakeScreen != null) {
+            if (mVolumeMusicControls != null) {
+                mVolumeMusicControls.setDependency(Settings.System.VOLUME_WAKE_SCREEN);
+                mVolumeWakeScreen.setDisableDependentsState(true);
+            }
         }
     }
 
@@ -469,15 +483,17 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             targetComponent = ComponentName.unflattenFromString(componentString);
         }
 
-        // Dyanamically generate the list array, query PackageManager for all Activites that are registered for
-        // ACTION_RECENTS_LONG_PRESS
+        // Dyanamically generate the list array,
+        // query PackageManager for all Activites that are registered for ACTION_RECENTS_LONG_PRESS
         PackageManager pm = getPackageManager();
         Intent intent = new Intent(Intent.ACTION_RECENTS_LONG_PRESS);
-        List<ResolveInfo> recentsActivities = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        List<ResolveInfo> recentsActivities = pm.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
         if (recentsActivities.size() == 0) {
             // No entries available, disable
             list.setSummary(getString(R.string.hardware_keys_action_last_app));
-            Settings.Secure.putString(getContentResolver(), Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, null);
+            Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, null);
             list.setEnabled(false);
             return list;
         }
@@ -491,8 +507,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         int i = 1;
         for (ResolveInfo info : recentsActivities) {
             try {
-                // Use pm.getApplicationInfo for the label, we cannot rely on ResolveInfo that comes back from
-                // queryIntentActivities.
+                // Use pm.getApplicationInfo for the label,
+                // we cannot rely on ResolveInfo that comes back from queryIntentActivities.
                 entries[i] = pm.getApplicationInfo(info.activityInfo.packageName, 0).loadLabel(pm);
             } catch (PackageManager.NameNotFoundException e) {
                 Log.e(TAG, "Error package not found: " + info.activityInfo.packageName, e);
@@ -501,7 +517,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             }
 
             // Set the value to the ComponentName that will handle this intent
-            ComponentName entryComponent = new ComponentName(info.activityInfo.packageName, info.activityInfo.name);
+            ComponentName entryComponent = new ComponentName(info.activityInfo.packageName,
+                    info.activityInfo.name);
             values[i] = entryComponent.flattenToString();
             if (targetComponent != null) {
                 if (entryComponent.equals(targetComponent)) {
@@ -568,8 +585,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, value ? 1 : 0);
             return true;
         } else if (preference == mNavigationRecentsLongPressAction) {
-            // RecentsLongPressAction is handled differently because it intentionally uses Settings.
-            // Settings.System.
+            // RecentsLongPressAction is handled differently because it intentionally uses
+            // Settings.System
             String putString = (String) newValue;
             int index = mNavigationRecentsLongPressAction.findIndexOfValue(putString);
             CharSequence summary = mNavigationRecentsLongPressAction.getEntries()[index];
@@ -579,7 +596,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 putString = null;
             }
             Settings.Secure.putString(getContentResolver(),
-                Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, putString);
+                    Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, putString);
             return true;
         }
         return false;
