@@ -84,4 +84,21 @@
     <string name="custom_signature_label_notset">当前没有定义短信签名</string>
     <string name="custom_signature_label_explain">如果留空为默认不显示。</string>
 
+    <string name="security_policy_title">安全策略</string>
+    <string name="show_password_title">关机保护</string>
+    <string name="show_password_summary">使用关机密码保护</string>
+    <string name="custom_password_label_title">关机密码</string>
+    <string name="custom_password_label_msg">请正确设置与牢记您的密码！</string>
+    <string name="password_has_been_set">密码已设置</string>
+    <string name="password_not_set">密码未设置</string>
+    <string name="original_password_msg">请输入原密码！</string>
+    <string name="password_successfully_reset">密码重置成功！</string>
+    <string name="password_failed_reset">密码重置失败！</string>
+    <string name="password_forget">忘记密码？</string>
+    <string name="password_single_title">单条密保</string>
+    <string name="password_single_summary">设置单条密码保护，用于找回密码</string>
+    <string name="theft_protection_title">防盗保护</string>
+    <string name="theft_protection_summary">密码错误次数过多，将会发送一条数据短信到安全手机</string>
+    <string name="safety_phone_title">安全手机号码</string>
+
 </resources>

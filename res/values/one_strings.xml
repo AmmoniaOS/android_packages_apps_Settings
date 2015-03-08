@@ -83,4 +83,15 @@
     <string name="custom_signature_label_notset">There are currently no defined message signature</string>
     <string name="custom_signature_label_explain">If left blank for default does not display。</string>
 
+    <string name="security_policy_title">Security policy</string>
+    <string name="show_password_title">Power off protection</string>
+    <string name="show_password_summary">Using the shutdown password protection</string>
+    <string name="custom_password_label_title">Shutdown code</string>
+    <string name="custom_password_label_msg">Please set correctly and remember your password!</string>
+    <string name="password_has_been_set">Password has been set</string>
+    <string name="password_not_set">Password not set</string>
+    <string name="original_password_msg">Please enter the original password!</string>
+    <string name="password_successfully_reset">Password reset successful!</string>
+    <string name="password_failed_reset">Password reset failed!</string>
+
 </resources>

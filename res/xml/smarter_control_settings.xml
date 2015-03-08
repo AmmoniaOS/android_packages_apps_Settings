@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2014 The Android Open Source Project
+<!-- Copyright (C) 2015 The OneUI Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -24,6 +24,12 @@
                android:targetPackage="com.android.one"
                android:targetClass="com.android.one.UpdaterSettings" />
     </PreferenceScreen>
+
+    <!-- SecurityPolicy -->
+    <PreferenceScreen
+        android:key="security_policy"
+        android:title="@string/security_policy_title"
+        android:fragment="com.android.settings.one.SecurityPolicy" />
 
     <PreferenceCategory
         android:title="@string/power_saving_scheme_title" >
