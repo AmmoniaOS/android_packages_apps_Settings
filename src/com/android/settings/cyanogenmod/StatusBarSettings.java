@@ -32,8 +32,8 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.TextUtils;
-import android.widget.EditText;
 import android.text.format.DateFormat;
+import android.widget.EditText;
 import android.view.View;
 
 import com.android.settings.R;
@@ -83,7 +83,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
         mStatusBarClock = (ListPreference) findPreference(STATUS_BAR_CLOCK_STYLE);
         mStatusBarAmPm = (ListPreference) findPreference(STATUS_BAR_AM_PM);
-
         mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY_STYLE);
         mStatusBarBatteryShowPercent =
                 (ListPreference) findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
@@ -138,6 +137,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mCarrierSize.setValue(String.valueOf(CarrierSize));
         mCarrierSize.setSummary(mCarrierSize.getEntry());
         mCarrierSize.setOnPreferenceChangeListener(this);
+
+        if (TelephonyManager.getDefault().getPhoneCount() <= 1) {
+            removePreference(Settings.System.STATUS_BAR_MSIM_SHOW_EMPTY_ICONS);
+        }
     }
     
     private void updateCustomLabelTextSummary() {
