@@ -122,7 +122,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                 Settings.System.SHOW_CARRIER, 0) == 1));
         mShowCarrier.setOnPreferenceChangeListener(this);
         mCustomCarrierLabel = (PreferenceScreen) findPreference(CUSTOM_CARRIER_LABEL);
-            updateCustomLabelTextSummary();
+        updateCustomLabelTextSummary();
         
         mStatusBarNetworkTraffic = (ListPreference) findPreference(STATUS_BAR_NETWORK_TRAFFIC_STYLE);
         int networkTrafficStyle = Settings.System.getInt(resolver,
@@ -242,7 +242,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         if (preference.getKey().equals(CUSTOM_CARRIER_LABEL)) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
             alert.setTitle(R.string.custom_carrier_label_title);
-            alert.setMessage(R.string.custom_carrier_label_explain);
 
             // Set an EditText view to get user input
             final EditText input = new EditText(getActivity());

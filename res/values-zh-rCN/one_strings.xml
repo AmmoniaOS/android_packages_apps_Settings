@@ -80,4 +80,10 @@
     <string name="date_second_title">时间显示秒</string>
     <string name="date_second_summary">让时间精确到秒</string>
 
+    <string name="mms_show_signature_title">短信签名</string>
+    <string name="mms_show_signature_summary">显示短信签名</string>
+    <string name="custom_signature_label_title">自定义短信签名</string>
+    <string name="custom_signature_label_notset">当前没有定义短信签名</string>
+    <string name="custom_signature_label_explain">如果留空为默认不显示。</string>
+
 </resources>

@@ -21,13 +21,19 @@ import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
 
+import android.app.AlertDialog;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 
 import android.content.ContentResolver;
-import android.os.Bundle;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Spannable;
+import android.text.TextUtils;
+import android.widget.EditText;
+import android.view.View;
+import android.os.Bundle;
 import android.os.UserHandle;
 import android.preference.ListPreference;
 import android.preference.SwitchPreference;
@@ -37,11 +43,13 @@ import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
 import android.provider.Settings.Global;
-import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
+import android.util.Log;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import android.util.Log;
+
+import com.android.settings.R;
+import com.android.settings.SettingsPreferenceFragment;
 
 public class SmarterControlSettings extends SettingsPreferenceFragment 
              implements OnPreferenceChangeListener {
@@ -58,6 +66,8 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private static final String KEY_DISPLAY_SMARTER = "display_smarter";
     private static final String KEY_SYSTEM_UPDATES = "system_updates";
     private static final String KEY_DATE_SECOND = "date_second";
+    private static final String KEY_MMS_SIGNATURE = "show_signature";
+    private static final String KEY_CUSTOM_SIGNATURE_LABEL = "custom_signature_label";
 
     private SwitchPreference mSmarterBrightness;
     private ListPreference mSmallhours;
@@ -68,9 +78,9 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private Preference mTips;
     private PreferenceCategory mDisplaySmarter;
     private SwitchPreference mDateScond;
-    private ListPreference mSleepmodeSettings;
-    private SwitchPreference mSmarterAirplane;
-    private ListPreference mNightColor;
+    private PreferenceScreen mCustomSignatureLabel;
+
+    private String mCustomSignatureLabelText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -143,6 +153,20 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
                  Settings.System.CLOCK_USE_SECOND, 0) == 1));
         mDateScond.setOnPreferenceChangeListener(this);
 
+        mCustomSignatureLabel = (PreferenceScreen) findPreference(KEY_CUSTOM_SIGNATURE_LABEL);
+        updateCustomLabelTextSummary();
+
+    }
+    
+    private void updateCustomLabelTextSummary() {
+        mCustomSignatureLabelText = Settings.System.getString(
+            getActivity().getContentResolver(), Settings.System.CUSTOM_SIGNATURE_LABEL);
+
+        if (TextUtils.isEmpty(mCustomSignatureLabelText)) {
+            mCustomSignatureLabel.setSummary(R.string.custom_signature_label_notset);
+        } else {
+            mCustomSignatureLabel.setSummary(mCustomSignatureLabelText);
+        }
     }
 
     @Override
@@ -200,6 +224,34 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
+            final Preference preference) {
+        final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference.getKey().equals(KEY_CUSTOM_SIGNATURE_LABEL)) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setTitle(R.string.custom_signature_label_title);
+            alert.setMessage(R.string.custom_signature_label_explain);
+
+            // Set an EditText view to get user input
+            final EditText input = new EditText(getActivity());
+            input.setText(TextUtils.isEmpty(mCustomSignatureLabelText) ? "" : mCustomSignatureLabelText);
+            input.setSelection(input.getText().length());
+            alert.setView(input);
+            alert.setPositiveButton(getString(android.R.string.ok),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String value = ((Spannable) input.getText()).toString().trim();
+                            Settings.System.putString(resolver, Settings.System.CUSTOM_SIGNATURE_LABEL, value);
+                            updateCustomLabelTextSummary();
+                }
+            });
+            alert.setNegativeButton(getString(android.R.string.cancel), null);
+            alert.show();
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {

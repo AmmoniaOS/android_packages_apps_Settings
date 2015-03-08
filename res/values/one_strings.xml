@@ -79,4 +79,10 @@
     <string name="date_second_title">Time display seconds</string>
     <string name="date_second_summary">Let the time accurate to seconds</string>
 
+    <string name="mms_show_signature_title">Message signature</string>
+    <string name="mms_show_signature_summary">To display the message signature</string>
+    <string name="custom_signature_label_title">Custom message signature</string>
+    <string name="custom_signature_label_notset">There are currently no defined message signature</string>
+    <string name="custom_signature_label_explain">If left blank for default does not display。</string>
+
 </resources>
