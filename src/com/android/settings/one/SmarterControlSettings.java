@@ -66,7 +66,6 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
     private static final String KEY_DISPLAY_SMARTER = "display_smarter";
     private static final String KEY_SYSTEM_UPDATES = "system_updates";
     private static final String KEY_DATE_SECOND = "date_second";
-    private static final String KEY_MMS_SIGNATURE = "show_signature";
     private static final String KEY_CUSTOM_SIGNATURE_LABEL = "custom_signature_label";
 
     private SwitchPreference mSmarterBrightness;
@@ -155,7 +154,6 @@ public class SmarterControlSettings extends SettingsPreferenceFragment
 
         mCustomSignatureLabel = (PreferenceScreen) findPreference(KEY_CUSTOM_SIGNATURE_LABEL);
         updateCustomLabelTextSummary();
-
     }
     
     private void updateCustomLabelTextSummary() {

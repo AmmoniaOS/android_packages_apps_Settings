@@ -96,17 +96,10 @@
         android:title="@string/date_second_title"
         android:summary="@string/date_second_summary"
         android:defaultValue="false" />
-    
-    <SwitchPreference
-        android:key="show_signature"
-        android:title="@string/mms_show_signature_title"
-        android:summary="@string/mms_show_signature_summary"
-        android:defaultValue="false" />
 
     <PreferenceScreen
         android:key="custom_signature_label"
-        android:title="@string/custom_signature_label_title"
-        android:dependency="show_signature" />
+        android:title="@string/custom_signature_label_title" />
 
     </PreferenceCategory>
 

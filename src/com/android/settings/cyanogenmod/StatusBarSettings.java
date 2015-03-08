@@ -242,6 +242,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         if (preference.getKey().equals(CUSTOM_CARRIER_LABEL)) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
             alert.setTitle(R.string.custom_carrier_label_title);
+            alert.setMessage(R.string.custom_carrier_label_explain);
 
             // Set an EditText view to get user input
             final EditText input = new EditText(getActivity());
