@@ -46,7 +46,7 @@ public class SecurityPolicy extends SettingsPreferenceFragment
 
     private static final String SHOW_PASSWORD = "show_password";
     private static final String CUSTOM_PASSWORD_LABEL = "custom_password_label";
-    private static final String CLOSE_FORCED_SHUTDOWN = "custom_password_label";
+    private static final String CLOSE_FORCED_SHUTDOWN = "forced_shutdown";
 
     private SwitchPreference mShowPasswordDialog;
     private SwitchPreference mCloseForcedShutdown;
