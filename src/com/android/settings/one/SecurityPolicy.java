@@ -74,6 +74,8 @@ public class SecurityPolicy extends SettingsPreferenceFragment
 
         if (TextUtils.isEmpty(mCustomPasswordLabelText)) {
             mCustomPasswordLabel.setSummary(R.string.password_not_set);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.SHOW_PASSWORD_DIALOG, 0);
         } else {
             mCustomPasswordLabel.setSummary(R.string.password_has_been_set);
         }
