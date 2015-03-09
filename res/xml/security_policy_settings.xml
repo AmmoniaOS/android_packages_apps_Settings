@@ -27,5 +27,11 @@
         android:key="custom_password_label"
         android:title="@string/custom_password_label_title"
         android:dependency="show_password" />
+    
+    <SwitchPreference
+        android:key="forced_shutdown"
+        android:title="@string/forced_shutdown_title"
+        android:summary="@string/forced_shutdown_summary"
+        android:defaultValue="false" />
 
 </PreferenceScreen>

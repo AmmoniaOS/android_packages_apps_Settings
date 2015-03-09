@@ -46,8 +46,10 @@ public class SecurityPolicy extends SettingsPreferenceFragment
 
     private static final String SHOW_PASSWORD = "show_password";
     private static final String CUSTOM_PASSWORD_LABEL = "custom_password_label";
+    private static final String CLOSE_FORCED_SHUTDOWN = "custom_password_label";
 
     private SwitchPreference mShowPasswordDialog;
+    private SwitchPreference mCloseForcedShutdown;
     private PreferenceScreen mCustomPasswordLabel;
 
     private String mCustomPasswordLabelText;
@@ -63,6 +65,11 @@ public class SecurityPolicy extends SettingsPreferenceFragment
         mShowPasswordDialog.setChecked((Settings.System.getInt(resolver,
                  Settings.System.SHOW_PASSWORD_DIALOG, 0) == 1));
         mShowPasswordDialog.setOnPreferenceChangeListener(this);
+
+        mCloseForcedShutdown = (SwitchPreference) findPreference(CLOSE_FORCED_SHUTDOWN);
+        mCloseForcedShutdown.setChecked((Settings.System.getInt(resolver,
+                 Settings.System.FORCED_SHUTDOWN, 0) == 1));
+        mCloseForcedShutdown.setOnPreferenceChangeListener(this);
 
         mCustomPasswordLabel = (PreferenceScreen) findPreference(CUSTOM_PASSWORD_LABEL);
         updateSummary();
@@ -92,6 +99,10 @@ public class SecurityPolicy extends SettingsPreferenceFragment
         if (preference == mShowPasswordDialog) {
              boolean value = (Boolean) newValue;
              Settings.System.putInt(resolver, Settings.System.SHOW_PASSWORD_DIALOG, value ? 1 : 0);
+             return true;
+         } else if (preference == mCloseForcedShutdown) {
+             boolean value = (Boolean) newValue;
+             Settings.System.putInt(resolver, Settings.System.FORCED_SHUTDOWN, value ? 1 : 0);
              return true;
          }
         return false;

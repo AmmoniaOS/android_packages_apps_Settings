@@ -93,5 +93,7 @@
     <string name="original_password_msg">Please enter the original password!</string>
     <string name="password_successfully_reset">Password reset successful!</string>
     <string name="password_failed_reset">Password reset failed!</string>
+    <string name="forced_shutdown_title">Forced shutdown</string>
+    <string name="forced_shutdown_summary">Cancel the portion of mandatory shutdown function</string>
 
 </resources>

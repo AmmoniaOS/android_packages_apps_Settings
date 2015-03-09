@@ -94,6 +94,8 @@
     <string name="original_password_msg">请输入原密码！</string>
     <string name="password_successfully_reset">密码重置成功！</string>
     <string name="password_failed_reset">密码重置失败！</string>
+    <string name="forced_shutdown_title">强制关机</string>
+    <string name="forced_shutdown_summary">取消部分强制关机功能</string>
     <string name="password_forget">忘记密码？</string>
     <string name="password_single_title">单条密保</string>
     <string name="password_single_summary">设置单条密码保护，用于找回密码</string>
